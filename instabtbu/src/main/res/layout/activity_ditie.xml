@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/ditie_linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <ImageView
+            android:id="@+id/ditie_ditie"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+			android:adjustViewBounds="true"
+            android:layout_weight="1"
+            android:src="@drawable/ditie_ditie1"
+            android:onClick="ditie" />
+
+        <ImageView
+            android:id="@+id/ditie_gongjiao"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+			android:adjustViewBounds="true"
+            android:src="@drawable/ditie_gongjiao0"
+            android:onClick="gongjiao" />
+        
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/ditie_webview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ditie_linear" />
+
+</RelativeLayout>

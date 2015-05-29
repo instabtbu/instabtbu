@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3D3F4F" >
+
+    <ImageView
+        android:id="@+id/leftmenu_imgtouxiang"
+        android:layout_width="199dp"
+        android:layout_height="124dp"
+        android:background="@drawable/left_head" />
+    
+   <TextView
+        android:id="@+id/leftmenu_textview_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/leftmenu_imgtouxiang"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/leftmenu_imgtouxiang"
+        android:layout_marginBottom="28dp"
+        android:gravity="center_horizontal"
+        android:text="还没有登录"
+        android:textColor="#C0C0C0"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/leftmenu_textview_dianzheli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_alignLeft="@+id/leftmenu_imgtouxiang"
+        android:layout_alignRight="@+id/leftmenu_imgtouxiang"
+        android:gravity="center_horizontal"
+        android:text="你好"
+        android:textColor="#C0C0C0"
+        android:textSize="14dp" />
+
+    <ScrollView
+        android:id="@+id/leftmenu_scrollview"
+        android:layout_width="199dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/leftmenu_imgtouxiang"
+        android:layout_marginBottom="24dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/leftmenu_shangwang"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/left_shangwang0" />
+
+            <ImageView
+                android:id="@+id/leftmenu_jiaowu"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/left_jiaowu0" />
+
+            <ImageView
+                android:id="@+id/leftmenu_guancang"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/left_guancang0" />
+
+            <ImageView
+                android:id="@+id/leftmenu_shenghuo"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/left_shenghuo0" />
+
+            <ImageView
+                android:id="@+id/leftmenu_xiaoyuanka"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/left_xiaoyuanka0" />
+            
+            <ImageView
+                android:id="@+id/leftmenu_ditie"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/left_ditie0" />
+            
+			<ImageView
+                android:id="@+id/leftmenu_about"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/left_about0" />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

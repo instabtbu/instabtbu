@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <issue id="ButtonStyle">
+        <ignore path="res/layout/umeng_update_dialog.xml" />
+    </issue>
+    <issue id="ContentDescription">
+        <ignore path="res/layout/activity_about.xml" />
+        <ignore path="res/layout/activity_baoliuliang.xml" />
+        <ignore path="res/layout/activity_ditie.xml" />
+        <ignore path="res/layout/activity_first_background.xml" />
+        <ignore path="res/layout/activity_first_jieshao.xml" />
+        <ignore path="res/layout/activity_guancang.xml" />
+        <ignore path="res/layout/activity_jiaowu.xml" />
+        <ignore path="res/layout/activity_jiaowu_kebiao.xml" />
+        <ignore path="res/layout/activity_jiaowu_xiaoli.xml" />
+        <ignore path="res/layout/activity_leftmenu.xml" />
+        <ignore path="res/layout/activity_liulianggoumai.xml" />
+        <ignore path="res/layout/activity_shangwang.xml" />
+        <ignore path="res/layout/activity_shenghuo.xml" />
+        <ignore path="res/layout/activity_xiaoyuanka.xml" />
+        <ignore path="res/layout/jiaowu_xiaoli.xml" />
+        <ignore path="res/layout/leftmenu.xml" />
+        <ignore path="res/layout/umeng_fb_activity_conversation.xml" />
+        <ignore path="res/layout/umeng_fb_list_header.xml" />
+    </issue>
+    <issue id="HardcodedText">
+        <ignore path="res/layout/activity_first_jieshao.xml" />
+        <ignore path="res/layout/activity_jiaowu.xml" />
+        <ignore path="res/layout/activity_jiaowu_chengji.xml" />
+        <ignore path="res/layout/activity_jiaowu_kebiao.xml" />
+        <ignore path="res/layout/activity_leftmenu.xml" />
+        <ignore path="res/layout/activity_liulianggoumai.xml" />
+        <ignore path="res/layout/activity_shangwang.xml" />
+        <ignore path="res/layout/activity_xiaoyuanka.xml" />
+        <ignore path="res/layout/item_chengji.xml" />
+        <ignore path="res/layout/item_kebiao.xml" />
+        <ignore path="res/layout/jiaowu_chengji.xml" />
+        <ignore path="res/layout/jiaowu_kebiao.xml" />
+        <ignore path="res/layout/leftmenu.xml" />
+    </issue>
+    <issue id="SmallSp">
+        <ignore path="res/layout/umeng_fb_list_item.xml" />
+    </issue>
+    <issue id="SpUsage">
+        <ignore path="res/layout/leftmenu.xml" />
+    </issue>
+    <issue id="UselessParent">
+        <ignore path="res/layout/activity_first_jieshao.xml" />
+        <ignore path="res/layout/activity_guancang.xml" />
+        <ignore path="res/layout/activity_jiaowu.xml" />
+        <ignore path="res/layout/activity_shangwang.xml" />
+        <ignore path="res/layout/umeng_fb_list_header.xml" />
+    </issue>
+</lint>

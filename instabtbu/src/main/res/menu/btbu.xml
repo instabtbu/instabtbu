@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="hk.ypw.instabtbu.BTBU" >
+    <item android:id="@+id/feedback" android:title="反馈建议"></item>
+    <item android:id="@+id/addqun" android:title="我要加群"></item>
+    <item android:id="@+id/fenxiang" android:title="分享"></item>
+    <item android:id="@+id/about" android:title="关于"></item>
+    <item android:id="@+id/exit" android:title="退出"></item>
+
+</menu>

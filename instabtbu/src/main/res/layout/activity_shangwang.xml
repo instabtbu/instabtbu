@@ -1,0 +1,167 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shangwang_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E6E6E6" >
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <EditText
+                    android:id="@+id/shangwang_edit_psw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/shangwang_imgpswleft"
+                    android:layout_alignRight="@+id/shangwang_edit_num"
+                    android:layout_below="@+id/shangwang_edit_num"
+                    android:layout_toRightOf="@+id/shangwang_imgpswleft"
+                    android:background="@drawable/shangwang_psw_right"
+                    android:ems="20"
+                    android:inputType="textPassword"
+                    android:text="" >
+                </EditText>
+
+                <ImageView
+                    android:id="@+id/shangwang_imgforce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="14dp"
+                    android:onClick="force"
+                    android:src="@drawable/shangwang_force" />
+
+                <ImageView
+                    android:id="@+id/shangwang_zhuangtai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/shangwang_zhuangtai0" />
+
+                <EditText
+                    android:id="@+id/shangwang_edit_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/shangwang_imgnumleft"
+                    android:layout_alignRight="@+id/shangwang_zhuangtai"
+                    android:layout_below="@+id/shangwang_zhuangtai"
+                    android:layout_toRightOf="@+id/shangwang_imgnumleft"
+                    android:background="@drawable/shangwang_num_right"
+                    android:digits="1234567890pP"
+                    android:ems="20"
+                    android:inputType="number"
+                    android:text="">
+
+                    <requestFocus />
+                </EditText>
+
+                <ImageView
+                    android:id="@+id/shangwang_imgpswleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/shangwang_imgnumleft"
+                    android:layout_below="@+id/shangwang_imgnumleft"
+                    android:background="@drawable/shangwang_psw_left" />
+
+                <ImageView
+                    android:id="@+id/shangwang_imgnumleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/shangwang_deglu"
+                    android:layout_below="@+id/shangwang_zhuangtai"
+                    android:background="@drawable/shangwang_num_left" />
+
+                <ImageView
+                    android:id="@+id/shangwang_deglu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/shangwang_zidongdenglu"
+                    android:layout_below="@+id/shangwang_edit_psw"
+                    android:background="@drawable/shangwang_denglu1" />
+
+                <ImageView
+                    android:id="@+id/shangwang_duankai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/shangwang_deglu"
+                    android:layout_toRightOf="@+id/shangwang_deglu"
+                    android:background="@drawable/shangwang_duankai0"
+                    android:onClick="duankai" />
+
+                <ImageView
+                    android:id="@+id/shangwang_zidongdenglu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/shangwang_imgforce"
+                    android:layout_below="@+id/shangwang_deglu"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/shangwang_zidongdenglu0" />
+
+                <ImageView
+                    android:id="@+id/shangwang_zidongcha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/shangwang_duankai"
+                    android:layout_alignTop="@+id/shangwang_zidongdenglu"
+                    android:background="@drawable/shangwang_zidongcha0" />
+
+                <ImageView
+                    android:id="@+id/shangwang_liulianggoumai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/shangwang_zidongcha"
+                    android:layout_below="@+id/shangwang_zidongcha"
+                    android:layout_marginTop="11dp"
+                    android:background="@drawable/shangwang_xiaoyuanwang"
+                    android:onClick="liulianggoumai" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/shangwang_zidongdenglu"
+                    android:layout_alignTop="@+id/shangwang_liulianggoumai"
+                    android:onClick="chaliuliang"
+                    android:src="@drawable/shangwang_chaliuliang" />
+
+                <TextView
+                    android:id="@+id/shangwang_textliuliang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/shangwang_zhuangtai"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="190dp"
+                    android:text="         MB"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/shangwang_textshebei"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/shangwang_textliuliang"
+                    android:layout_alignBottom="@+id/shangwang_textliuliang"
+                    android:layout_alignRight="@+id/shangwang_edit_num"
+                    android:layout_marginRight="18dp"
+                    android:text="-"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF" >
+
+    <EditText
+        android:id="@+id/changpao_psw2"
+        android:layout_width="201dp"
+        android:layout_height="27dp"
+        android:layout_above="@+id/changpao_cha"
+        android:layout_alignLeft="@+id/changpao_num2"
+        android:background="@drawable/changpao_psw_right"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/changpao_num2"
+        android:layout_width="201dp"
+        android:layout_height="27dp"
+        android:layout_above="@+id/changpao_psw2"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/changpao_num_right"
+        android:digits="1234567890p"
+        android:inputType="number"
+        android:ems="10">
+
+        <requestFocus />
+    </EditText>
+
+    <ImageView
+        android:id="@+id/changpao_num1"
+        android:layout_width="29dp"
+        android:layout_height="27dp"
+        android:layout_alignTop="@+id/changpao_num2"
+        android:layout_toLeftOf="@+id/changpao_num2"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/changpao_num_left" />
+
+    <ImageView
+        android:id="@+id/changpao_psw1"
+        android:layout_width="29dp"
+        android:layout_height="27dp"
+        android:layout_alignTop="@+id/changpao_psw2"
+        android:layout_toLeftOf="@+id/changpao_psw2"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/changpao_psw_left" />
+
+    <ImageView
+        android:id="@+id/changpao_cha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
+        android:onClick="chacishu"
+        android:scaleType="fitStart"
+        android:src="@drawable/changpao_run" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/img_bar"
+        android:background="@drawable/changpao_background" />
+
+    <TextView
+        android:id="@+id/changpao_text_cishu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:textSize="72sp" />
+
+    <ImageView
+        android:id="@+id/changpao_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/changpao_text_cishu"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/changpao_bar_back" />
+
+    <ImageView
+        android:id="@+id/changpao_bar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/changpao_bar"
+        android:layout_alignLeft="@+id/changpao_bar"
+        android:layout_alignTop="@+id/changpao_bar"
+        android:background="@drawable/changpao_bar_1" />
+
+    <ImageView
+        android:id="@+id/changpao_bar2"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/changpao_bar"
+        android:layout_alignTop="@+id/changpao_bar"
+        android:layout_toRightOf="@+id/changpao_bar1"
+        android:background="#FFFFFF" />
+
+    <ImageView
+        android:id="@+id/changpao_bar3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/changpao_bar"
+        android:layout_alignTop="@+id/changpao_bar"
+        android:layout_marginTop="0.5dp"
+        android:layout_toRightOf="@+id/changpao_bar2"
+        android:background="@drawable/changpao_bar_3" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_alignTop="@+id/imageView6"
+        android:layout_alignBottom="@+id/imageView6"
+        android:scaleType="center"
+        android:src="@drawable/changpao_time_all" />
+
+    <TextView
+        android:id="@+id/changpao_text_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView6"
+        android:layout_alignRight="@+id/imageView6"
+        android:layout_below="@+id/imageView6"
+        android:gravity="center"
+        android:text="16"
+        android:textSize="33sp" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/changpao_text_left"
+        android:layout_alignRight="@+id/changpao_text_left"
+        android:layout_below="@+id/changpao_text_left"
+        android:gravity="center"
+        android:text="剩余次数" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextView01"
+        android:layout_alignBottom="@+id/TextView01"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="剩余天数" />
+
+    <TextView
+        android:id="@+id/changpao_text_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView8"
+        android:layout_alignRight="@+id/imageView8"
+        android:layout_below="@+id/imageView6"
+        android:gravity="center"
+        android:text="16"
+        android:textColor="#E74135"
+        android:onClick="setday"
+        android:textSize="33sp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/changpao_time_now"
+        android:layout_below="@+id/imageView1"
+        android:scaleType="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView6"
+        android:layout_alignBottom="@+id/imageView6"
+        android:layout_centerHorizontal="true"
+        android:scaleType="center"
+        android:src="@drawable/changpao_time_left" />
+
+    <TextView
+        android:id="@+id/changpao_text_leftday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView6"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="16"
+        android:textSize="33sp" />
+
+    <TextView
+        android:id="@+id/TextView04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextView02"
+        android:layout_alignBottom="@+id/TextView02"
+        android:layout_alignLeft="@+id/changpao_text_all"
+        android:layout_alignRight="@+id/changpao_text_all"
+        android:gravity="center"
+        android:text="总次数设定" />
+
+    <ImageView
+        android:id="@+id/img_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/bar_jiaowu" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/imageView1"
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="已跑次数"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp" />
+
+</RelativeLayout>

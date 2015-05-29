@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:orientation="vertical"  
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent"  
+    android:id="@+id/jiaowu_chengji"
+    android:background="#FFFFFFFF"
+    >  
+
+    <TextView
+        android:id="@+id/jiaowu_jidian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:text="平均学分绩点"
+        android:textSize="24sp" />
+    
+ <LinearLayout  
+  android:orientation="horizontal"  
+  android:layout_width="fill_parent"  
+  android:layout_height="wrap_content"
+  
+  >  
+    
+  <TextView  
+   android:layout_width="220dp"  
+   android:layout_height="wrap_content"  
+   android:text="课程名称"
+   android:textSize="18sp"
+   android:layout_marginLeft="18dp"
+  />
+   <TextView  
+   android:layout_width="40dp"  
+   android:layout_height="wrap_content"  
+   android:text="学分"  
+   android:textSize="18sp"
+  />
+  <TextView  
+   android:layout_width="fill_parent"  
+   android:layout_height="wrap_content"  
+   android:text="成绩"  
+   android:textSize="18sp"
+  />    
+</LinearLayout>
+<View  
+    android:layout_height="1px" 
+    android:layout_width="match_parent"
+    android:background="#FFB3B3B3"
+    android:layout_marginLeft="18dp"
+    android:layout_marginRight="18dp"
+/>
+ 
+ <!-- ListView控件 -->  
+
+<ListView
+    android:id="@+id/jiaowu_listView_chengji"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginBottom="18dp"
+    android:layout_marginLeft="18dp"
+    android:layout_marginRight="18dp"
+    android:divider="#FFB3B3B3"
+    android:dividerHeight="1px" />
+  
+</LinearLayout> 

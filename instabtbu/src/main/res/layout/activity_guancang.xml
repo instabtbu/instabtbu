@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E6E6E6" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/guancang_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/guancang_head" />
+                
+                <ImageView
+			        android:id="@+id/guancang_edittext_left"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignLeft="@+id/guancang_head"
+			        android:layout_below="@+id/guancang_head"
+			        android:layout_marginTop="10dp"
+			        android:src="@drawable/guancang_edittext1" 
+			        android:onClick="scan"
+			        />
+                
+                
+                <EditText
+                    android:id="@+id/guancang_edittext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/guancang_head"
+                    android:layout_marginTop="10dp"
+                    android:layout_toLeftOf="@+id/guancang_scan"
+                    android:layout_toRightOf="@+id/guancang_edittext_left"
+                    android:background="@drawable/guancang_edittext2"
+                    android:ems="20"
+                    android:inputType="text" >
+
+			    </EditText>
+			    
+                <ImageView
+			        android:id="@+id/guancang_scan"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignRight="@+id/guancang_head"
+			        android:layout_below="@+id/guancang_head"
+			        android:layout_marginTop="10dp"
+			        android:src="@drawable/guancang_scan" 
+			        android:onClick="scan"
+			        />
+			    
+                <ImageView
+			        android:id="@+id/guancang_search"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignRight="@+id/guancang_head"
+			        android:layout_alignLeft="@+id/guancang_head"
+			        android:layout_below="@+id/guancang_scan"
+			        android:layout_marginTop="10dp"
+			        android:src="@drawable/guancang_search" 
+			        android:onClick="search"
+			        />
+                
+                <ImageView
+			        android:id="@+id/guancang_head2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignRight="@+id/guancang_head"
+			        android:layout_alignLeft="@+id/guancang_head"
+			        android:layout_below="@+id/guancang_search"
+			        android:layout_marginTop="10dp"
+			        android:src="@drawable/guancang_head2" 
+			        />
+			    
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

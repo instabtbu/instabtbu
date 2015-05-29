@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">instabtbu</string>
+    <string name="menu_settings">设置</string>
+    <string name="action_settings">Settings</string>
+    <string name="copyright">copyright ©2014 Team of instabtbu.All rights reserved.</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+	<string name="share">"instabtbu 把图书馆塞进口袋\r\nhttp://www.instabtbu.com</string>
+	<string name="scan_text">将条码放入框内, 即可自动扫描</string>
+</resources>
