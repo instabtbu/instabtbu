@@ -3,6 +3,6 @@
     android:id="@+id/umeng_fb_spinnerTarget"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textSize="@dimen/umeng_fb_item_content_size"
     android:gravity="center"
-    android:paddingBottom="0dp"/>
+    android:paddingBottom="0dp"
+    android:textSize="@dimen/umeng_fb_item_content_size" />

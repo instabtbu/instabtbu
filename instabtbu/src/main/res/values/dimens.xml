@@ -8,5 +8,5 @@
     <dimen name="shadow_width">5dp</dimen>
 
     <integer name="num_cols">1</integer>
-    
+
 </resources>

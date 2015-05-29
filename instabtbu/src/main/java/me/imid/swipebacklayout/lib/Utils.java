@@ -1,4 +1,3 @@
-
 package me.imid.swipebacklayout.lib;
 
 import android.app.Activity;
@@ -46,7 +45,7 @@ public class Utils {
      * with the {@link android.R.attr#windowIsFloating} attribute.
      */
     @SuppressWarnings("rawtypes")
-	public static void convertActivityToTranslucent(Activity activity) {
+    public static void convertActivityToTranslucent(Activity activity) {
         try {
             Class<?>[] classes = Activity.class.getDeclaredClasses();
             Class<?> translucentConversionListenerClazz = null;
@@ -58,8 +57,8 @@ public class Utils {
             Method method = Activity.class.getDeclaredMethod("convertToTranslucent",
                     translucentConversionListenerClazz);
             method.setAccessible(true);
-            method.invoke(activity, new Object[] {
-                null
+            method.invoke(activity, new Object[]{
+                    null
             });
         } catch (Throwable t) {
         }

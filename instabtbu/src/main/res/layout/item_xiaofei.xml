@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/xiaoyuanka_list_jine"
@@ -10,8 +10,8 @@
         android:layout_alignBaseline="@+id/xiaoyuanka_list_didian"
         android:layout_alignBottom="@+id/xiaoyuanka_list_didian"
         android:layout_alignRight="@+id/xiaoyuanka_list_time"
-        android:textSize="16dp"
-        android:text="jine" />
+        android:text="jine"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/xiaoyuanka_list_didian"
@@ -37,14 +37,14 @@
         android:layout_width="1dp"
         android:layout_height="8dp"
         android:layout_alignLeft="@+id/xiaoyuanka_list_didian"
-        android:layout_below="@+id/xiaoyuanka_list_didian"/>
+        android:layout_below="@+id/xiaoyuanka_list_didian" />
 
     <TextView
         android:id="@+id/xiaoyuanka_list_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/xiaoyuanka_list_typeimg"
         android:text="type"
         android:textSize="20dp" />

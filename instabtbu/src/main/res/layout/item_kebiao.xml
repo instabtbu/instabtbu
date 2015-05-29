@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="horizontal"  
-  android:layout_width="fill_parent"  
-  android:layout_height="wrap_content" >
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-   <TextView
-   android:layout_height="fill_parent"
-   android:layout_width="0dp"
-   android:layout_weight="1"
-       android:id="@+id/jiaowu_zhouyi"
-       android:textSize="14sp"
-       android:text="星期一"/>
-<View  
-	android:layout_width="1px" 
-	android:layout_height="match_parent"
-	android:background="#FFB3B3B3"
-/>
-   <TextView
-	android:layout_height="fill_parent"
-	android:layout_width="0dp"
-	android:layout_weight="1"
-       android:id="@+id/jiaowu_zhouer"
-       android:textSize="14sp"
-       android:text="星期二"/>
-<View  
-	android:layout_width="1px" 
-	android:layout_height="match_parent"
-	android:background="#FFB3B3B3"
-/>
-   <TextView
-	android:layout_height="fill_parent"
-	android:layout_width="0dp"
-	android:layout_weight="1"
-       android:id="@+id/jiaowu_zhousan"
-       android:textSize="14sp"
-       android:text="星期三"/>
-<View  
-	android:layout_width="1px" 
-	android:layout_height="match_parent"
-	android:background="#FFB3B3B3"
-/>
-   <TextView
-	android:layout_height="fill_parent"
-	android:layout_width="0dp"
-	android:layout_weight="1"
-       android:id="@+id/jiaowu_zhousi"
-       android:textSize="14sp"
-       android:text="星期四"/>
-<View  
-	android:layout_width="1px" 
-	android:layout_height="match_parent"
-	android:background="#FFB3B3B3"
-/>
-  <TextView
-	android:layout_height="fill_parent"
-	android:layout_width="0dp"
-	android:layout_weight="1"
-      android:id="@+id/jiaowu_zhouwu"
-      android:textSize="14sp"
-      android:text="星期五"/>
+    <TextView
+        android:id="@+id/jiaowu_zhouyi"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:text="星期一"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="#FFB3B3B3" />
+
+    <TextView
+        android:id="@+id/jiaowu_zhouer"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:text="星期二"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="#FFB3B3B3" />
+
+    <TextView
+        android:id="@+id/jiaowu_zhousan"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:text="星期三"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="#FFB3B3B3" />
+
+    <TextView
+        android:id="@+id/jiaowu_zhousi"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:text="星期四"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="#FFB3B3B3" />
+
+    <TextView
+        android:id="@+id/jiaowu_zhouwu"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:text="星期五"
+        android:textSize="14sp" />
 </LinearLayout>

@@ -1,6 +1,5 @@
 package me.imid.swipebacklayout.lib.app;
 
-import hk.ypw.instabtbu.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
@@ -8,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import hk.ypw.instabtbu.R;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.Utils;
 

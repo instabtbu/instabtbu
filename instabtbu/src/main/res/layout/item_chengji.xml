@@ -2,34 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
-         <TextView 
-             android:id="@+id/jiaowu_name"
-             android:layout_width="220dp"
-             android:layout_height="fill_parent"
-             android:textSize="18dp"
-             android:text="name"/>
-         
-<View  
-	android:layout_width="1px" 
-	android:layout_height="match_parent"
-	android:background="#FFB3B3B3"
-/>
-         <TextView
-             android:id="@+id/jiaowu_xuefen"
-             android:layout_width="40dp"
-             android:layout_height="fill_parent"
-             android:text="xuefen"
-             android:textSize="18dp" />
-<View  
-	android:layout_width="1px" 
-	android:layout_height="fill_parent"
-	android:background="#FFB3B3B3"
-/>
-          <TextView
-              android:id="@+id/jiaowu_chengji"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:text="chengji"
-              android:textSize="18dp" />
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/jiaowu_name"
+        android:layout_width="220dp"
+        android:layout_height="fill_parent"
+        android:text="name"
+        android:textSize="18dp" />
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="#FFB3B3B3" />
+
+    <TextView
+        android:id="@+id/jiaowu_xuefen"
+        android:layout_width="40dp"
+        android:layout_height="fill_parent"
+        android:text="xuefen"
+        android:textSize="18dp" />
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="fill_parent"
+        android:background="#FFB3B3B3" />
+
+    <TextView
+        android:id="@+id/jiaowu_chengji"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="chengji"
+        android:textSize="18dp" />
 </LinearLayout>

@@ -2,57 +2,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hk.ypw.instabtbu.About"
     android:background="#FFFFFF"
->
+    tools:context="hk.ypw.instabtbu.About">
 
     <ImageView
         android:id="@+id/about_about_us"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:src="@drawable/about_us"
-        android:onClick="caidan" />
-        
+        android:onClick="caidan"
+        android:src="@drawable/about_us" />
+
     <ScrollView
         android:id="@+id/activity_about"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/about_about_us" >
+        android:layout_below="@+id/about_about_us">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="vertical" >
-	<ImageView
-        android:id="@+id/about_ypw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/about_ypw" />
-    <ImageView
-        android:id="@+id/about_lxm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/about_lxm" />
-    <ImageView
-        android:id="@+id/about_lxw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/about_lxw" />
-    <ImageView
-        android:id="@+id/about_cyz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/about_cyz" />
-    <ImageView
-        android:id="@+id/about_lzy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/about_lzy" />
-            
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/about_ypw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/about_ypw" />
+
+            <ImageView
+                android:id="@+id/about_lxm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/about_lxm" />
+
+            <ImageView
+                android:id="@+id/about_lxw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/about_lxw" />
+
+            <ImageView
+                android:id="@+id/about_cyz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/about_cyz" />
+
+            <ImageView
+                android:id="@+id/about_lzy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/about_lzy" />
+
         </LinearLayout>
 
     </ScrollView>

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF" >
+    android:background="#FFFFFF">
 
     <EditText
         android:id="@+id/changpao_psw2"
@@ -22,8 +22,8 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/changpao_num_right"
         android:digits="1234567890p"
-        android:inputType="number"
-        android:ems="10">
+        android:ems="10"
+        android:inputType="number">
 
         <requestFocus />
     </EditText>
@@ -116,10 +116,10 @@
         android:id="@+id/imageView8"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_alignTop="@+id/imageView6"
         android:layout_alignBottom="@+id/imageView6"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/imageView6"
+        android:layout_marginRight="20dp"
         android:scaleType="center"
         android:src="@drawable/changpao_time_all" />
 
@@ -162,9 +162,9 @@
         android:layout_alignRight="@+id/imageView8"
         android:layout_below="@+id/imageView6"
         android:gravity="center"
+        android:onClick="setday"
         android:text="16"
         android:textColor="#E74135"
-        android:onClick="setday"
         android:textSize="33sp" />
 
     <ImageView
@@ -172,18 +172,18 @@
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/changpao_time_now"
         android:layout_below="@+id/imageView1"
-        android:scaleType="center"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp" />
+        android:scaleType="center"
+        android:src="@drawable/changpao_time_now" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView6"
         android:layout_alignBottom="@+id/imageView6"
+        android:layout_alignTop="@+id/imageView6"
         android:layout_centerHorizontal="true"
         android:scaleType="center"
         android:src="@drawable/changpao_time_left" />

@@ -2,116 +2,117 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6E6E6" >
+    android:background="#E6E6E6">
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        >
+        android:layout_centerHorizontal="true">
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                
-    <EditText
-        android:id="@+id/changpao_psw2"
-        android:layout_width="201dp"
-        android:layout_height="27dp"
-        android:layout_alignBottom="@+id/changpao_psw1"
-        android:layout_alignRight="@+id/changpao_num2"
-        android:layout_alignTop="@+id/changpao_psw1"
-        android:layout_toRightOf="@+id/changpao_psw1"
-        android:background="@drawable/shangwang_psw_right"
-        android:ems="10"
-        android:inputType="textPassword" >
 
-    </EditText>
+                <EditText
+                    android:id="@+id/changpao_psw2"
+                    android:layout_width="201dp"
+                    android:layout_height="27dp"
+                    android:layout_alignBottom="@+id/changpao_psw1"
+                    android:layout_alignRight="@+id/changpao_num2"
+                    android:layout_alignTop="@+id/changpao_psw1"
+                    android:layout_toRightOf="@+id/changpao_psw1"
+                    android:background="@drawable/shangwang_psw_right"
+                    android:ems="10"
+                    android:inputType="textPassword">
 
-    <ImageView
-        android:id="@+id/changpao_cha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/jiaowu_qingkongziliao"
-        android:layout_alignTop="@+id/jiaowu_chengji"
-        android:onClick="kebiao"
-        android:src="@drawable/jiaowu_kebiao" />
+                </EditText>
 
-    <ImageView
-        android:id="@+id/changpao_num1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="15dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/shangwang_num_left" />
+                <ImageView
+                    android:id="@+id/changpao_cha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/jiaowu_qingkongziliao"
+                    android:layout_alignTop="@+id/jiaowu_chengji"
+                    android:onClick="kebiao"
+                    android:src="@drawable/jiaowu_kebiao" />
 
-    <EditText
-        android:id="@+id/changpao_num2"
-        android:layout_width="201dp"
-        android:layout_height="27dp"
-        android:layout_alignBottom="@+id/changpao_num1"
-        android:layout_alignRight="@+id/imageView1"
-        android:layout_alignTop="@+id/changpao_num1"
-        android:layout_toRightOf="@+id/changpao_num1"
-        android:background="@drawable/shangwang_num_right"
-        android:ems="10"
-        android:digits="1234567890pP"
-        android:inputType="number"/>
+                <ImageView
+                    android:id="@+id/changpao_num1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/imageView1"
+                    android:layout_below="@+id/imageView1"
+                    android:layout_marginTop="15dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/shangwang_num_left" />
 
-    <ImageView
-        android:id="@+id/changpao_psw1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/changpao_num1"
-        android:layout_toLeftOf="@+id/changpao_num2"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/shangwang_psw_left" />
+                <EditText
+                    android:id="@+id/changpao_num2"
+                    android:layout_width="201dp"
+                    android:layout_height="27dp"
+                    android:layout_alignBottom="@+id/changpao_num1"
+                    android:layout_alignRight="@+id/imageView1"
+                    android:layout_alignTop="@+id/changpao_num1"
+                    android:layout_toRightOf="@+id/changpao_num1"
+                    android:background="@drawable/shangwang_num_right"
+                    android:digits="1234567890pP"
+                    android:ems="10"
+                    android:inputType="number" />
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/jiaowu_back" />
+                <ImageView
+                    android:id="@+id/changpao_psw1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/changpao_num1"
+                    android:layout_toLeftOf="@+id/changpao_num2"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/shangwang_psw_left" />
 
-    <ImageView
-        android:id="@+id/jiaowu_chengji"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/changpao_psw1"
-        android:layout_below="@+id/changpao_psw2"
-        android:layout_marginTop="13dp"
-        android:onClick="chengji"
-        android:src="@drawable/jiaowu_chengji" />
-    <ImageView
-        android:id="@+id/jiaowu_qingkongziliao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/changpao_psw2"
-        android:layout_alignTop="@+id/jiaowu_xiaoli"
-        android:background="@drawable/jiaowu_qingkongziliao"
-        android:onClick="qingkongziliao" />
-    
-    <ImageView
-        android:id="@+id/jiaowu_xiaoli"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/jiaowu_chengji"
-        android:layout_alignRight="@+id/jiaowu_chengji"
-        android:layout_below="@+id/jiaowu_chengji"
-        android:layout_marginTop="13dp"
-        android:onClick="xiaoli"
-        android:src="@drawable/jiaowu_xiaoli" />
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/jiaowu_back" />
 
-                </RelativeLayout>
+                <ImageView
+                    android:id="@+id/jiaowu_chengji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/changpao_psw1"
+                    android:layout_below="@+id/changpao_psw2"
+                    android:layout_marginTop="13dp"
+                    android:onClick="chengji"
+                    android:src="@drawable/jiaowu_chengji" />
+
+                <ImageView
+                    android:id="@+id/jiaowu_qingkongziliao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/changpao_psw2"
+                    android:layout_alignTop="@+id/jiaowu_xiaoli"
+                    android:background="@drawable/jiaowu_qingkongziliao"
+                    android:onClick="qingkongziliao" />
+
+                <ImageView
+                    android:id="@+id/jiaowu_xiaoli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/jiaowu_chengji"
+                    android:layout_alignRight="@+id/jiaowu_chengji"
+                    android:layout_below="@+id/jiaowu_chengji"
+                    android:layout_marginTop="13dp"
+                    android:onClick="xiaoli"
+                    android:src="@drawable/jiaowu_xiaoli" />
+
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-    
+
 </RelativeLayout>

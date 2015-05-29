@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF" >
+    android:background="#FFFFFF">
 
     <ImageView
         android:id="@+id/shenghuo_songshui"
@@ -13,23 +13,23 @@
         android:layout_marginLeft="27dp"
         android:layout_marginTop="24dp"
         android:src="@drawable/shenghuo_songshui" />
-    
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="@+id/shenghuo_songshui"
-        android:layout_below="@+id/shenghuo_songshui" 
+        android:layout_below="@+id/shenghuo_songshui"
         android:layout_marginTop="20dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:scrollbars="vertical"
-        android:id="@+id/shenghuo_linear" >
+        <LinearLayout
+            android:id="@+id/shenghuo_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:scrollbars="vertical">
 
-    </LinearLayout>
-</ScrollView>
+        </LinearLayout>
+    </ScrollView>
 
     <ImageView
         android:id="@+id/shenghuo_weixiu"

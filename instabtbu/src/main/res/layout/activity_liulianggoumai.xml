@@ -2,43 +2,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF4D4D4D" >
+    android:background="#FF4D4D4D">
 
     <ImageView
-            android:id="@+id/liulianggoumai_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/liulianggoumai_yue" />
-    
+        android:id="@+id/liulianggoumai_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/liulianggoumai_yue" />
+
     <ImageView
         android:id="@+id/liulianggoumai_button_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="bao8G"
-        android:background="@drawable/liulianggoumai_button_8" />
-    
-        <ImageView
+        android:background="@drawable/liulianggoumai_button_8"
+        android:onClick="bao8G" />
+
+    <ImageView
         android:id="@+id/liulianggoumai_button_20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="bao20G"
-        android:background="@drawable/liulianggoumai_button_20" />
+        android:background="@drawable/liulianggoumai_button_20"
+        android:onClick="bao20G" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="14dp"
-            android:layout_centerHorizontal="true"
-            android:text="办理期间为当月5日至20日,办理成功下月生效"
-            android:textColor="#FFB3B3B3" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:text="办理期间为当月5日至20日,办理成功下月生效"
+        android:textColor="#FFB3B3B3" />
 
-        <TextView
-            android:id="@+id/liuliang_yue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="余额:"
-            android:textSize="16sp"
-            android:textColor="#FFFFFF" />
+    <TextView
+        android:id="@+id/liuliang_yue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="余额:"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
 
 </RelativeLayout>

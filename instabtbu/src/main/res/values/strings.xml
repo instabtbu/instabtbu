@@ -7,6 +7,18 @@
     <string name="copyright">copyright ©2014 Team of instabtbu.All rights reserved.</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-	<string name="share">"instabtbu 把图书馆塞进口袋\r\nhttp://www.instabtbu.com</string>
-	<string name="scan_text">将条码放入框内, 即可自动扫描</string>
+    <string name="share">"instabtbu 把图书馆塞进口袋\r\nhttp://www.instabtbu.com</string>
+    <string name="scan_text">将条码放入框内, 即可自动扫描</string>
+
+
+    <string name="regexLiuliang">([0–9]+)(兆)</string>
+    <string name="regexWangfei">剩余网费.*?(\\w+.\\w*元)</string>
+    <string name="regexZaixian">在线:(\\d+)</string>
+    <string name="RSA">RSA/ECB/PKCS1Padding</string>
+    <string name="regexChengji"><![CDATA[<tr heigth = 23.+?>.+?</tr>]]></string>
+    <string name="regexChengji2"><![CDATA[<td.+?>(.*?(\\w*)(</a>)?)</td>]]></string>
+    <string name="regexChengji_ye">value=(.+?)value=(\\w+).+?末页</string>
+    <string name="regexChengji3"><![CDATA[<tr heigth = 23.+?>.+?</tr>]]></string>
+    <string name="regexChengji4"><![CDATA[<td.+?>(.*?(\\w*)(</a>)?)</td>]]></string>
+    <string name="regexChengji_pingshi"><![CDATA[70\" title=.+?>(.+?)</td>]]></string>
 </resources>
