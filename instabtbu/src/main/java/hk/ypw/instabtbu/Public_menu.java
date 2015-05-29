@@ -1,6 +1,5 @@
 package hk.ypw.instabtbu;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -26,8 +25,6 @@ import java.util.Map;
 public class Public_menu {
     Activity thisActivity;
 
-    @SuppressLint("WorldReadableFiles")
-    @SuppressWarnings("deprecation")
     public void select(MenuItem item) {
         try {
             if (item.getItemId() == R.id.about) {
@@ -42,7 +39,7 @@ public class Public_menu {
                     info = new UserInfo();
                 Map<String, String> contact = info.getContact();
                 if (contact == null)
-                    contact = new HashMap<String, String>();
+                    contact = new HashMap<>();
                 SharedPreferences sp = thisActivity.getSharedPreferences(
                         "data", 0);
                 String num = sp.getString("num", "");
@@ -61,6 +58,7 @@ public class Public_menu {
                             .getDrawable(R.drawable.fenxiang);
                     FileOutputStream Os = thisActivity.openFileOutput(
                             "share.jpg", Context.MODE_WORLD_READABLE);
+                    assert drawable != null;
                     Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
                     ByteArrayOutputStream bos = new ByteArrayOutputStream();
                     bitmap.compress(CompressFormat.JPEG, 100, bos);
@@ -82,11 +80,11 @@ public class Public_menu {
                     sendIntent.putExtra("Kdescription", fenxiang);
                     sendIntent.setType("image/*");
                     thisActivity.startActivity(sendIntent);
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
 
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
     }
 

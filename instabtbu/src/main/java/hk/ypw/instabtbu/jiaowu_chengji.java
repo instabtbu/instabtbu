@@ -49,8 +49,6 @@ public class jiaowu_chengji extends SwipeBackActivity {
     Activity thisActivity = this;
     private ProgressDialog dialog;
 
-    Common common;
-    
     Runnable chengjiRunnable = new Runnable() {
         @Override
         public void run() {
@@ -62,7 +60,7 @@ public class jiaowu_chengji extends SwipeBackActivity {
                     "PageNum=1");
             gengxin("获取第一页成绩成功，分析中……");
             // System.out.println(result);
-            jidian = common.zhongjian(result, "平均学分绩点<span>", "。</span>");
+            jidian = Common.zhongjian(result, "平均学分绩点<span>", "。</span>");
             int i = 0;
             String tempString;
             String kemuString = "";
@@ -85,11 +83,11 @@ public class jiaowu_chengji extends SwipeBackActivity {
                             if (kemuString.indexOf('<') == -1)
                                 kechengmingcheng.add(tempString);
                         } else if (i % 10 == 3) {
-                            chengji.add(common.zhongjian(tempString, ")\">", "</a>"));
-                            chengjiString = common.zhongjian(tempString, ")\">",
+                            chengji.add(Common.zhongjian(tempString, ")\">", "</a>"));
+                            chengjiString = Common.zhongjian(tempString, ")\">",
                                     "</a>");
                             urlList.add("http://jwgl.btbu.edu.cn"
-                                    + common.zhongjian(tempString, "JsMod('", "\""));
+                                    + Common.zhongjian(tempString, "JsMod('", "\""));
                         } else if (i % 10 == 8) {
                             xuefen.add(tempString);
                             showString += "\n" + kemuString + "\t"
@@ -108,11 +106,11 @@ public class jiaowu_chengji extends SwipeBackActivity {
                             if (kemuString.indexOf('<') == -1)
                                 kechengmingcheng.add(tempString);
                         } else if (i % 13 == 5) {
-                            chengji.add(common.zhongjian(tempString, ")\">", "</a>"));
-                            chengjiString = common.zhongjian(tempString, ")\">",
+                            chengji.add(Common.zhongjian(tempString, ")\">", "</a>"));
+                            chengjiString = Common.zhongjian(tempString, ")\">",
                                     "</a>");
                             urlList.add("http://jwgl.btbu.edu.cn"
-                                    + common.zhongjian(tempString, "JsMod('", "\""));
+                                    + Common.zhongjian(tempString, "JsMod('", "\""));
                         } else if (i % 13 == 10) {
                             xuefen.add(tempString);
                             showString += "\n" + kemuString + "\t"
@@ -159,12 +157,12 @@ public class jiaowu_chengji extends SwipeBackActivity {
                                         if (kemuString.indexOf('<') == -1)
                                             kechengmingcheng.add(tempString);
                                     } else if (i % 10 == 3) {
-                                        chengji.add(common.zhongjian(tempString, ")\">",
+                                        chengji.add(Common.zhongjian(tempString, ")\">",
                                                 "</a>"));
-                                        chengjiString = common.zhongjian(tempString,
+                                        chengjiString = Common.zhongjian(tempString,
                                                 ")\">", "</a>");
                                         urlList.add("http://jwgl.btbu.edu.cn"
-                                                + common.zhongjian(tempString, "JsMod('",
+                                                + Common.zhongjian(tempString, "JsMod('",
                                                 "\""));
                                     } else if (i % 10 == 8) {
                                         xuefen.add(tempString);
@@ -184,12 +182,12 @@ public class jiaowu_chengji extends SwipeBackActivity {
                                         if (kemuString.indexOf('<') == -1)
                                             kechengmingcheng.add(tempString);
                                     } else if (i % 13 == 5) {
-                                        chengji.add(common.zhongjian(tempString, ")\">",
+                                        chengji.add(Common.zhongjian(tempString, ")\">",
                                                 "</a>"));
-                                        chengjiString = common.zhongjian(tempString,
+                                        chengjiString = Common.zhongjian(tempString,
                                                 ")\">", "</a>");
                                         urlList.add("http://jwgl.btbu.edu.cn"
-                                                + common.zhongjian(tempString, "JsMod('",
+                                                + Common.zhongjian(tempString, "JsMod('",
                                                 "\""));
                                     } else if (i % 13 == 10) {
                                         xuefen.add(tempString);
@@ -317,7 +315,7 @@ public class jiaowu_chengji extends SwipeBackActivity {
 
     public String POST(String url, String postdata) {
         try{
-            common.commonPOST(url, postdata);
+            Common.commonPOST(url, postdata);
         } catch (Exception e) {
             if (dialog.isShowing())
                 dialog.dismiss();

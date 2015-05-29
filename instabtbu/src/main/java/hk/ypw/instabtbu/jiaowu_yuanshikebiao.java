@@ -31,7 +31,6 @@ public class jiaowu_yuanshikebiao extends SwipeBackActivity {
         webView.post(new Runnable() {
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 WebView webView = (WebView) findViewById(R.id.jiaowu_yuanshikebiao);
                 SharedPreferences sp = getSharedPreferences("data", 0);
                 String kebiaopath = sp.getString("lixiankebiao", "");

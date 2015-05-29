@@ -1,13 +1,9 @@
 package hk.ypw.instabtbu;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.view.SurfaceHolder;
@@ -28,8 +24,6 @@ import java.util.Vector;
 
 public class Guancang_scan extends Activity implements Callback {
 
-    private static final int PARSE_BARCODE_SUC = 300;
-    private static final int PARSE_BARCODE_FAIL = 303;
     /**
      * 处理扫描结果
      *
@@ -43,27 +37,6 @@ public class Guancang_scan extends Activity implements Callback {
     private Vector<BarcodeFormat> decodeFormats;
     private String characterSet;
     private InactivityTimer inactivityTimer;
-    private ProgressDialog mProgress;
-    private Bitmap scanBitmap;
-    @SuppressLint("HandlerLeak")
-    Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            mProgress.dismiss();
-            switch (msg.what) {
-                case PARSE_BARCODE_SUC:
-                    onResultHandler((String) msg.obj, scanBitmap);
-                    break;
-                case PARSE_BARCODE_FAIL:
-                    Toast.makeText(Guancang_scan.this, (String) msg.obj,
-                            Toast.LENGTH_LONG).show();
-                    break;
-
-            }
-        }
-    };
 
     /**
      * Called when the activity is first created.
@@ -115,23 +88,20 @@ public class Guancang_scan extends Activity implements Callback {
         super.onDestroy();
     }
 
-    public void handleDecode(Result result, Bitmap barcode) {
+    public void handleDecode(Result result) {
         inactivityTimer.onActivity();
         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         vibrator.vibrate(VIBRATE_DURATION);
         // 震动
 
         String resultString = result.getText();
-        onResultHandler(resultString, barcode);
+        onResultHandler(resultString);
     }
 
     /**
      * 跳转到上一个页面
-     *
-     * @param resultString
-     * @param bitmap
      */
-    private void onResultHandler(String resultString, Bitmap bitmap) {
+    private void onResultHandler(String resultString) {
         if (TextUtils.isEmpty(resultString)) {
             Toast.makeText(Guancang_scan.this, "Scan failed!",
                     Toast.LENGTH_SHORT).show();
@@ -148,9 +118,7 @@ public class Guancang_scan extends Activity implements Callback {
     private void initCamera(SurfaceHolder surfaceHolder) {
         try {
             CameraManager.get().openDriver(surfaceHolder);
-        } catch (IOException ioe) {
-            return;
-        } catch (RuntimeException e) {
+        } catch (IOException | RuntimeException ioe) {
             return;
         }
         if (handler == null) {

@@ -1,6 +1,5 @@
 package hk.ypw.instabtbu;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -12,10 +11,8 @@ import com.umeng.analytics.MobclickAgent;
 
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
-@SuppressLint({"ClickableViewAccessibility", "HandlerLeak"})
 public class Ditie extends SwipeBackActivity {
 
-    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +39,6 @@ public class Ditie extends SwipeBackActivity {
         webView.post(new Runnable() {
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 WebView webView = (WebView) findViewById(R.id.ditie_webview);
                 webView.setInitialScale(25);
                 webView.loadUrl("file:///android_asset/ditie_bjsubway.png");
@@ -61,7 +57,6 @@ public class Ditie extends SwipeBackActivity {
         webView.post(new Runnable() {
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 WebView webView = (WebView) findViewById(R.id.ditie_webview);
                 webView.setInitialScale(35);
                 webView.loadUrl("file:///android_asset/ditie_bjsubway.png");
@@ -79,7 +74,6 @@ public class Ditie extends SwipeBackActivity {
         webView.post(new Runnable() {
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 WebView webView = (WebView) findViewById(R.id.ditie_webview);
                 DisplayMetrics mDisplayMetrics = new DisplayMetrics();
                 getWindowManager().getDefaultDisplay().getMetrics(

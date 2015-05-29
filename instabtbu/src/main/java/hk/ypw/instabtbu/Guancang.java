@@ -1,6 +1,5 @@
 package hk.ypw.instabtbu;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,13 +14,11 @@ import com.umeng.analytics.MobclickAgent;
 
 import java.net.URLEncoder;
 
-@SuppressLint("HandlerLeak")
 public class Guancang extends Activity {
     Leftmenu Leftmenu;
     SlidingMenu menu;
     Activity thisActivity = this;
     long uiId;
-    String name = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,14 +58,12 @@ public class Guancang extends Activity {
             Toast.makeText(thisActivity, "请输入查询内容", Toast.LENGTH_SHORT).show();
         } else {
             try {
-                String searchUrl = "http://211.82.113.138:8080/search?xc=4&kw="
+                Guancang_web.urlString = "http://211.82.113.138:8080/search?xc=4&kw="
                         + URLEncoder.encode(kw, "UTF-8");
-                Guancang_web.urlString = searchUrl;
                 Intent intent = new Intent();
                 intent.setClass(thisActivity, Guancang_web.class);
                 thisActivity.startActivity(intent);
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -91,9 +86,8 @@ public class Guancang extends Activity {
                     String isbnString = bundle.getString("result");
                     Toast.makeText(thisActivity, "ISBN:" + isbnString,
                             Toast.LENGTH_SHORT).show();
-                    String searchUrl = "http://211.82.113.138:8080/search?xc=4&isbnstr="
+                    Guancang_web.urlString = "http://211.82.113.138:8080/search?xc=4&isbnstr="
                             + isbnString;
-                    Guancang_web.urlString = searchUrl;
                     Intent intent = new Intent();
                     intent.setClass(thisActivity, Guancang_web.class);
                     thisActivity.startActivity(intent);

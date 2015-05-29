@@ -49,7 +49,7 @@ public class About extends SwipeBackActivity {
             info = new UserInfo();
         Map<String, String> contact = info.getContact();
         if (contact == null)
-            contact = new HashMap<String, String>();
+            contact = new HashMap<>();
         SharedPreferences sp = thisActivity.getSharedPreferences("data", 0);
         String num = sp.getString("num", "");
         contact.put("num", num);
@@ -68,15 +68,15 @@ public class About extends SwipeBackActivity {
                         UmengUpdateAgent.showUpdateDialog(mContext, arg1);
                         break;
                     case UpdateStatus.No: // has no update
-                        Toast.makeText(mContext, "您使用的已经是最新版本。", Toast.LENGTH_SHORT)
+                        Toast.makeText(mContext, getString(R.string.umeng_isNewest), Toast.LENGTH_SHORT)
                                 .show();
                         break;
                     case UpdateStatus.NoneWifi: // none wifi
-                        Toast.makeText(mContext, "没有连接wifi。", Toast.LENGTH_SHORT)
+                        Toast.makeText(mContext, getString(R.string.umeng_notWifi), Toast.LENGTH_SHORT)
                                 .show();
                         break;
                     case UpdateStatus.Timeout: // time out
-                        Toast.makeText(mContext, "请求超时。", Toast.LENGTH_SHORT)
+                        Toast.makeText(mContext, getString(R.string.umeng_timeout), Toast.LENGTH_SHORT)
                                 .show();
                         break;
                 }

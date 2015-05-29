@@ -10,8 +10,7 @@
     <string name="share">"instabtbu 把图书馆塞进口袋\r\nhttp://www.instabtbu.com</string>
     <string name="scan_text">将条码放入框内, 即可自动扫描</string>
 
-
-    <string name="regexLiuliang">([0–9]+)(兆)</string>
+    <string name="shangwang_liuliang">(\\d+)兆</string>
     <string name="regexWangfei">剩余网费.*?(\\w+.\\w*元)</string>
     <string name="regexZaixian">在线:(\\d+)</string>
     <string name="RSA">RSA/ECB/PKCS1Padding</string>
@@ -21,4 +20,17 @@
     <string name="regexChengji3"><![CDATA[<tr heigth = 23.+?>.+?</tr>]]></string>
     <string name="regexChengji4"><![CDATA[<td.+?>(.*?(\\w*)(</a>)?)</td>]]></string>
     <string name="regexChengji_pingshi"><![CDATA[70\" title=.+?>(.+?)</td>]]></string>
+    <string name="regexKebiao"><![CDATA[<div id=\"(.+?)-2\".*?>(.+?)</div>]]></string>
+    <string name="regexKebiaoDetail"><![CDATA[&nbsp;(.*?)<br>(.+?)<br>(.*?)<br><nobr> *(.*?)<nobr><br>(.*?)<br>(.*?)<br>]]></string>
+    <string name="regexKebiao3"><![CDATA[<.+?> *]]></string>
+    <string name="regexKebiao_Xueqi"><![CDATA[<option value=\".*?\".*?>(.*?)</option>]]></string>
+    <string name="connectFail">连接失败\n服务器已断开连接</string>
+    <string name="postFail">连接BTBU失败。\n请确认信号良好再操作。</string>
+    <string name="shangwang_wifi">请先连接wifi喔</string>
+    <string name="umeng_liulianggoumai">liulianggoumai</string>
+    <string name="umeng_isNewest">您使用的已经是最新版本。</string>
+    <string name="umeng_notWifi">没有连接wifi。</string>
+    <string name="umeng_timeout">请求超时。</string>
+
+
 </resources>

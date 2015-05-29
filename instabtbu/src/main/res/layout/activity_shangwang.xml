@@ -28,7 +28,7 @@
                     android:background="@drawable/shangwang_psw_right"
                     android:ems="20"
                     android:inputType="textPassword"
-                    android:text=""></EditText>
+                    android:text=""/>
 
                 <ImageView
                     android:id="@+id/shangwang_imgforce"

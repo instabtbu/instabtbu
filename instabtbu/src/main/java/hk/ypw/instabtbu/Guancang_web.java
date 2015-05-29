@@ -27,12 +27,11 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 @SuppressLint({"SetJavaScriptEnabled", "HandlerLeak"})
 public class Guancang_web extends SwipeBackActivity {
     static String urlString = "";
-    static HttpClient myClient = new DefaultHttpClient();
     Activity thisActivity = this;
     String loadurlString = "";
     String jsString = "";
-    ArrayList<String> beizhu = new ArrayList<String>();
-    ArrayList<String> bumen = new ArrayList<String>();
+    ArrayList<String> beizhu = new ArrayList<>();
+    ArrayList<String> bumen = new ArrayList<>();
     String addPlace = "";
     Handler handler = new Handler() {
         @Override
@@ -48,7 +47,7 @@ public class Guancang_web extends SwipeBackActivity {
                     jsString = "";
                     addPlace = "";
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
 
             }
         }
@@ -56,17 +55,17 @@ public class Guancang_web extends SwipeBackActivity {
     Runnable addimgRunnable = new Runnable() {
         @Override
         public void run() {
-            String result = "";
-            result = GET(loadurlString);
+            String result;
+            result = Common.commonGET(loadurlString);
             try {
                 String isbnString = zhongjian(result, "ISBN/价格：</strong>", ":");
                 System.out.println("isbn=" + isbnString);
-                result = httpsGET("https://api.douban.com/v2/book/isbn/"
+                result = Common.SSLGET("https://api.douban.com/v2/book/isbn/"
                         + isbnString);
 
                 String srcString = zhongjian(result, "large\":\"", "\"");
                 srcString = srcString.replace("\\", "");
-                String javascriptString = "";
+                String javascriptString;
                 if ((srcString.indexOf("book-default") > 0)
                         | (srcString.length() < 5)) {
                     srcString = "http://img3.douban.com/pics/book-default-medium.gif";
@@ -93,15 +92,14 @@ public class Guancang_web extends SwipeBackActivity {
                 }
                 jsString = javascriptString;
                 // 从豆瓣的API获取图片信息
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
 
             try {
                 String bookid = zhongjian(loadurlString, "book%2f", "&");
                 String detailUrl = "http://libopac.btbu.edu.cn:8080/opac/book/getHoldingsInformation/"
                         + bookid;
-                result = "";
-                result = GET(detailUrl);
+                result = Common.commonGET(detailUrl);
                 result = result.replace("\"", "");
                 Pattern pattern = Pattern.compile("备注:(.+?),部门名称:(.+?),");
                 Matcher matcher = pattern.matcher(result);
@@ -114,12 +112,12 @@ public class Guancang_web extends SwipeBackActivity {
                 String bumenString = "";
                 String beizhuString = "";
                 for (int i = 0; i < bumen.size(); i++) {
-                    if (bumenString.indexOf(bumen.get(i)) == -1) {
+                    if (!bumenString.contains(bumen.get(i))) {
                         bumenString += bumen.get(i) + " ";
                         beizhuString += beizhu.get(i) + " ";
                     }
                 }
-                String addPlaceString = "javascript:var bumen=\""
+                addPlace = "javascript:var bumen=\""
                         + bumenString
                         + "\".split(\" \");"
                         + "beizhu=\""
@@ -129,8 +127,7 @@ public class Guancang_web extends SwipeBackActivity {
                         + "for(var j=bumen.length-1;0<=j;j--)"
                         + "if(-1!=aEle[i].innerHTML.indexOf(bumen[j]))"
                         + "{var s=document.createElement(\"strong\");s.innerHTML=\"  \"+beizhu[j];aEle[i].appendChild(s);};";
-                addPlace = addPlaceString;
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
             Message message = new Message();
             message.what = 1;
@@ -155,31 +152,7 @@ public class Guancang_web extends SwipeBackActivity {
         }
     }
 
-    public static String httpsGET(String url) {
-        String result = "";
-        System.out.println(url);
-        HttpGet hGet = new HttpGet(url);
-        try {
-            HttpClient client = SSLSocketFactoryEx.getNewHttpClient();
-            client.getParams().setParameter(
-                    CoreConnectionPNames.CONNECTION_TIMEOUT, 30000);
-            // 请求超时
-            client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,
-                    30000);
-            // 读取超时
-            HttpResponse hResponse;
-            hResponse = client.execute(hGet);
-            if (hResponse.getStatusLine().getStatusCode() == 200) {
-                result = EntityUtils.toString(hResponse.getEntity());
-                // result = new String(result.getBytes("ISO_8859_1"), "gbk");
-                // 转码
-            }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return (result);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -206,30 +179,7 @@ public class Guancang_web extends SwipeBackActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    public String GET(String url) {
-        String result = "";
-        System.out.println(url);
-        HttpGet hGet = new HttpGet(url);
-        try {
-            myClient.getParams().setParameter(
-                    CoreConnectionPNames.CONNECTION_TIMEOUT, 30000);
-            // 请求超时
-            myClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,
-                    30000);
-            // 读取超时
-            HttpResponse hResponse;
-            hResponse = myClient.execute(hGet);
-            if (hResponse.getStatusLine().getStatusCode() == 200) {
-                result = EntityUtils.toString(hResponse.getEntity());
-                // result = new String(result.getBytes("ISO_8859_1"), "gbk");
-                // 转码
-            }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return (result);
-    }
 
     private class MyWebViewClient extends WebViewClient {
         @Override
@@ -238,7 +188,7 @@ public class Guancang_web extends SwipeBackActivity {
                 loadurlString = url;
                 executorService.submit(addimgRunnable);
             }
-            if (url.indexOf("marc_no") == -1)
+            if (!url.contains("marc_no"))
                 view.loadUrl(url);
             return true;
         }

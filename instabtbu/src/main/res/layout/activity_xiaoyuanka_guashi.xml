@@ -6,22 +6,22 @@
 
     <ImageView
         android:id="@+id/xiaoyuanka_buban"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/xiaoyuanka_buban"
+        android:src="@drawable/xiaoyuanka_buban"
         android:scaleType="fitCenter" />
 
     <ImageView
         android:id="@+id/xiaoyuanka_dianhua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="76dp"
-        android:layout_marginTop="190dp"
-        android:background="@drawable/xiaoyuanka_dianhua"
+        android:layout_marginLeft="92dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="220dp"
+        android:src="@drawable/xiaoyuanka_dianhua"
         android:onClick="dianhua" />
 
 </RelativeLayout>

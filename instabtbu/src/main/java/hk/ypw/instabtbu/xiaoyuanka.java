@@ -12,31 +12,19 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.umeng.analytics.MobclickAgent;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreConnectionPNames;
-import org.apache.http.util.EntityUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,9 +44,7 @@ public class xiaoyuanka extends Activity {
     String numString = "";
     String pswString = "";
     Toast toast;
-    ListView listView;
     Activity thisActivity = this;
-    List<String> xiaofeiList = new ArrayList<String>();
     Pattern p;
     Matcher m;
     String gengxinString = "";
@@ -68,7 +54,7 @@ public class xiaoyuanka extends Activity {
     Runnable dengluRunnable = new Runnable() {
         @Override
         public void run() {
-            String result = "";
+            String result;
             result = GET("http://card.btbu.edu.cn/CardWeb/queryresult.asp?cardno="
                     + numString
                     + "&password="
@@ -89,7 +75,7 @@ public class xiaoyuanka extends Activity {
                         0).edit();
                 editor.putString("num_xiaoyuanka", numString);
                 editor.putString("psw_xiaoyuanka", pswString);
-                editor.commit();
+                editor.apply();
                 out("已保存校园卡信息");
 
                 Message message = new Message();
@@ -107,7 +93,7 @@ public class xiaoyuanka extends Activity {
                         0).edit();
                 editor.remove("num_xiaoyuanka");
                 editor.remove("psw_xiaoyuanka");
-                editor.commit();
+                editor.apply();
             } else {
                 System.out.println(result);
                 System.out.println(zhongjian(result, "alert('", "'"));
@@ -159,7 +145,6 @@ public class xiaoyuanka extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xiaoyuanka);
-        myui_tianjia();
         Leftmenu = new Leftmenu(thisActivity, 4);
         menu = Leftmenu.menu;
         MobclickAgent.updateOnlineConfig(this);
@@ -171,9 +156,8 @@ public class xiaoyuanka extends Activity {
 
         out("校园卡配置读取:" + num + "," + psw);
 
-        if (num.length() == 0) {
-
-        } else {
+        assert num != null;
+        if (num.length() != 0) {
             numString = num;
             pswString = psw;
 
@@ -194,34 +178,6 @@ public class xiaoyuanka extends Activity {
         System.out.println(o);
     }
 
-    @SuppressWarnings("unused")
-    public void myui_tianjia() {
-        out("设置校园卡登录UI");
-        try {
-            DisplayMetrics mDisplayMetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
-            int width = mDisplayMetrics.widthPixels;
-            int height = mDisplayMetrics.heightPixels;
-            float density = mDisplayMetrics.density;
-            double w = width / 700.0;
-
-            // findViewById(R.id.xiaoyuanka_tianjia1).setBackgroundResource(R.drawable.xiaoyuanka_tianjia);
-            findViewById(R.id.xiaoyuanka_tianjia2).setBackgroundResource(
-                    R.drawable.xiaoyuanka_tianjia2);
-
-            mypoint tianjia1 = setView(R.id.xiaoyuanka_dise1, 0, 0, width,
-                    width * 404 / 719);
-            mypoint tianjia2 = setView(R.id.xiaoyuanka_tianjia2, 0,
-                    tianjia1.height, width, width * 712 / 719);
-
-            out("设置校园卡登录UI完毕");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @SuppressLint("InlinedApi")
     public void tianjia(View v) {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -272,10 +228,7 @@ public class xiaoyuanka extends Activity {
     }
 
     public boolean find(String text, String w) {
-        if (text.indexOf(w) == -1)
-            return false;
-        else
-            return true;
+        return text.contains(w);
     }
 
     public String zhongjian(String text, String textl, String textr) {
@@ -291,14 +244,6 @@ public class xiaoyuanka extends Activity {
             System.out.println("zhongjian:error:" + e);
             return "";
         }
-    }
-
-    public mypoint setView(int id, int x, int y, int wid, int hei) {
-        View myView = findViewById(id);
-        LayoutParams myParams = new LayoutParams(wid, hei);
-        myParams.setMargins(x, y, 0, 0);
-        myView.setLayoutParams(myParams);
-        return new mypoint(x, y, wid, hei);
     }
 
     @Override
@@ -341,66 +286,12 @@ public class xiaoyuanka extends Activity {
         }
     }
 
-    public String POST(String url, String postdata) {
-        String result = "";
-        System.out.println(url);
-        HttpPost hPost = new HttpPost(url);
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
-        String posts[] = postdata.split("&");
-        String posts2[];
-        int i;
-        for (i = 0; i < posts.length; i++) {
-            posts2 = posts[i].split("=");
-            if (posts2.length == 2)
-                params.add(new BasicNameValuePair(posts2[0], posts2[1]));
-            else
-                params.add(new BasicNameValuePair(posts2[0], ""));
-        }
-        try {
-            HttpEntity hen = new UrlEncodedFormEntity(params, "gb2312");
-            hPost.setEntity(hen);
-            myClient.getParams().setParameter(
-                    CoreConnectionPNames.CONNECTION_TIMEOUT, 30000);
-            // 请求超时
-            myClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,
-                    30000);
-            // 读取超时
-            HttpResponse hResponse;
-            hResponse = myClient.execute(hPost);
-            if (hResponse.getStatusLine().getStatusCode() == 200) {
-                result = EntityUtils.toString(hResponse.getEntity());
-                result = new String(result.getBytes("ISO_8859_1"), "gbk");
-                // 转码
-            }
-
-        } catch (Exception e) {
-            if (dialog2.isShowing())
-                dialog2.dismiss();
-            show("连接BTBU失败。\n请确认信号良好再操作。");
-            e.printStackTrace();
-        }
-        return (result);
-    }
-
     public String GET(String url) {
         String result = "";
         System.out.println(url);
-        HttpGet hGet = new HttpGet(url);
         try {
-            myClient.getParams().setParameter(
-                    CoreConnectionPNames.CONNECTION_TIMEOUT, 30000);
-            // 请求超时
-            myClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,
-                    30000);
-            // 读取超时
-            HttpResponse hResponse;
-            hResponse = myClient.execute(hGet);
-            if (hResponse.getStatusLine().getStatusCode() == 200) {
-                result = EntityUtils.toString(hResponse.getEntity());
-                result = new String(result.getBytes("ISO_8859_1"), "gbk");
-                // 转码
-            }
-
+            result = Common.commonGET(url);
+            result = new String(result.getBytes("ISO_8859_1"), "gbk");
         } catch (Exception e) {
             if (dialog2.isShowing())
                 dialog2.dismiss();
@@ -408,27 +299,5 @@ public class xiaoyuanka extends Activity {
             e.printStackTrace();
         }
         return (result);
-    }
-
-    public class mypoint {
-        int x;
-        int y;
-        int width;
-        int height;
-
-        public mypoint(int x, int y, int width, int height) {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
     }
 }

@@ -1,6 +1,5 @@
 package hk.ypw.instabtbu;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -36,8 +35,7 @@ import java.util.concurrent.Executors;
 /**
  * @author ypw
  */
-@SuppressLint({"ClickableViewAccessibility", "HandlerLeak",
-        "WorldReadableFiles"})
+
 public class jiaowuchaxun extends Activity {
     static boolean wificonnected = false;
 
@@ -54,13 +52,11 @@ public class jiaowuchaxun extends Activity {
     // 线程池
     private ProgressDialog dialog2;
 
-    Common common;
-
     Runnable chengjiRunnable = new Runnable() {
         @Override
         public void run() {
             try {
-                yzmBitmap = common.GET("http://jwgl.btbu.edu.cn/verifycode.servlet");
+                yzmBitmap = Common.GET("http://jwgl.btbu.edu.cn/verifycode.servlet");
                 gengxin("获取验证码完毕");
                 // Message message = new Message();
                 // message.what=1;
@@ -113,7 +109,7 @@ public class jiaowuchaxun extends Activity {
         @Override
         public void run() {
             try {
-                yzmBitmap = common.GET("http://jwgl.btbu.edu.cn/verifycode.servlet");
+                yzmBitmap = Common.GET("http://jwgl.btbu.edu.cn/verifycode.servlet");
                 gengxin("获取验证码完毕");
                 EditText numEditText = (EditText) findViewById(R.id.changpao_num2);
                 EditText pswEditText = (EditText) findViewById(R.id.changpao_psw2);
@@ -255,7 +251,7 @@ public class jiaowuchaxun extends Activity {
 
         dialog2 = ProgressDialog.show(jiaowuchaxun.this, "正在登录", "正在登录中……",
                 true, true);
-        Common.myClient = new DefaultHttpClient();
+        Common.commonClient = new DefaultHttpClient();
         executorService.submit(chengjiRunnable);
     }
 
@@ -272,7 +268,7 @@ public class jiaowuchaxun extends Activity {
 
             dialog2 = ProgressDialog.show(thisActivity, "正在登录", "正在登录中……",
                     true, true);
-            Common.myClient = new DefaultHttpClient();
+            Common.commonClient = new DefaultHttpClient();
             executorService.submit(kebiaoRunnable);
             wificonnected = true;
         } else {
@@ -456,12 +452,12 @@ public class jiaowuchaxun extends Activity {
     public String POST(String url, String postdata) {
         String result = "";
         try {
-            result = common.commonPOST(url, postdata);
+            result = Common.commonPOST(url, postdata);
 
         } catch (Exception e) {
             if (dialog2.isShowing())
                 dialog2.dismiss();
-            show("连接BTBU失败。\n请确认信号良好再操作。");
+            show(getString(R.string.postFail));
         }
         return result;
     }

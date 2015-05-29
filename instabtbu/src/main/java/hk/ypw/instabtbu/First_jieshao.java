@@ -22,8 +22,6 @@ public class First_jieshao extends Activity implements OnClickListener,
             R.drawable.first3};
     int now = 0;
     private ViewPager vp;
-    private ViewPagerAdapter vpAdapter;
-    private List<View> views;
 
     /**
      * Called when the activity is first created.
@@ -36,24 +34,24 @@ public class First_jieshao extends Activity implements OnClickListener,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_first_jieshao);
 
-        views = new ArrayList<View>();
+        List<View> views = new ArrayList<>();
 
         LinearLayout.LayoutParams mParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
         // 初始化引导图片列表
-        for (int i = 0; i < pics.length; i++) {
+        for (int pic : pics) {
             ImageView iv = new ImageView(this);
             iv.setLayoutParams(mParams);
-            iv.setImageResource(pics[i]);
+            iv.setImageResource(pic);
             iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
             views.add(iv);
         }
 
         vp = (ViewPager) findViewById(R.id.viewpager);
         // 初始化Adapter
-        vpAdapter = new ViewPagerAdapter(views);
+        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(views);
         vp.setAdapter(vpAdapter);
         // 绑定回调
         vp.setOnPageChangeListener(this);
@@ -73,7 +71,6 @@ public class First_jieshao extends Activity implements OnClickListener,
     // 当滑动状态改变时调用
     @Override
     public void onPageScrollStateChanged(int arg0) {
-        // TODO Auto-generated method stub
         // System.out.println("onPageScrollStateChanged:"+arg0);
         if (arg0 == 0) {
             System.out.println(now);
@@ -85,7 +82,6 @@ public class First_jieshao extends Activity implements OnClickListener,
     // 当前页面被滑动时调用
     @Override
     public void onPageScrolled(int arg0, float arg1, int arg2) {
-        // TODO Auto-generated method stub
         if (arg0 == pics.length - 1)
             now++;
         else
@@ -100,6 +96,6 @@ public class First_jieshao extends Activity implements OnClickListener,
 
     @Override
     public void onPageSelected(int arg0) {
-        // TODO Auto-generated method stub
+
     }
 }

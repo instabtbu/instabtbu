@@ -27,10 +27,6 @@ public class shenghuofuwu extends Activity {
     SlidingMenu menu;
     Activity thisActivity = this;
 
-    public static int dip2px(Context context, float dipValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dipValue * scale + 0.5f);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,26 +34,12 @@ public class shenghuofuwu extends Activity {
         setContentView(R.layout.activity_shenghuo);
         Leftmenu = new Leftmenu(thisActivity, 3);
         menu = Leftmenu.menu;
-        myui();
+        initUI();
 
     }
 
-    @SuppressWarnings("unused")
-    public void myui() {
+    public void initUI() {
         try {
-            DisplayMetrics mDisplayMetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
-            int width = mDisplayMetrics.widthPixels;
-            int height = mDisplayMetrics.heightPixels;
-            float density = mDisplayMetrics.density;
-            double w = width / 700.0;
-
-            setView(R.id.shenghuo_songshui, (int) (0.07 * width),
-                    (int) (0.07 * width), (int) (w * 274), (int) (w * 198));
-            setView(R.id.shenghuo_weixiu,
-                    (int) (width - 0.07 * width - w * 274),
-                    (int) (0.07 * width), (int) (w * 274), (int) (w * 198));
-
             SharedPreferences sp = getSharedPreferences("data", 0);
             String num = sp.getString("num", "还没有登录");
             TextView left_userTextView = (TextView) thisActivity
@@ -76,7 +58,6 @@ public class shenghuofuwu extends Activity {
         songshui.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
 
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri
                         .parse("tel:57112640"));
@@ -96,7 +77,6 @@ public class shenghuofuwu extends Activity {
         weixiu.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri
                         .parse("tel:81353578"));
                 try {
@@ -143,7 +123,6 @@ public class shenghuofuwu extends Activity {
             tempImageView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO Auto-generated method stub
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri
                             .parse("tel:" + tempcall));
                     try {
@@ -181,14 +160,6 @@ public class shenghuofuwu extends Activity {
         Leftmenu.leftmenu_ui(2);
     }
 
-    public mypoint setView(int id, int x, int y, int wid, int hei) {
-        View myView = findViewById(id);
-        LayoutParams myParams = new LayoutParams(wid, hei);
-        myParams.setMargins(x, y, 0, 0);
-        myView.setLayoutParams(myParams);
-        return new mypoint(x, y, wid, hei);
-    }
-
     public class Canting {
         int id;
         String mingcheng;
@@ -201,25 +172,4 @@ public class shenghuofuwu extends Activity {
         }
     }
 
-    public class mypoint {
-        int x;
-        int y;
-        int width;
-        int height;
-
-        public mypoint(int x, int y, int width, int height) {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
-    }
 }

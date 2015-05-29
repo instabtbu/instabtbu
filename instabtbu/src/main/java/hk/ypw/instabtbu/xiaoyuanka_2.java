@@ -31,15 +31,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.umeng.analytics.MobclickAgent;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreConnectionPNames;
-import org.apache.http.util.EntityUtils;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -66,14 +57,13 @@ public class xiaoyuanka_2 extends Activity {
     double zonge = 0;
     myAdapter adapter;
     List<String> adapterList;
-    List<String> adapterList2 = new ArrayList<String>();
+    List<String> adapterList2 = new ArrayList<>();
     ListView listView;
-    List<String> xiaofeiList = new ArrayList<String>();
-    List<String> xinxiList = new ArrayList<String>();
+    List<String> xiaofeiList = new ArrayList<>();
+    List<String> xinxiList = new ArrayList<>();
     Pattern p;
     Matcher m;
 
-    ;
     String gengxinString = "";
     String showString = "";
     private ExecutorService executorService = Executors.newCachedThreadPool();// 线程池
@@ -83,7 +73,7 @@ public class xiaoyuanka_2 extends Activity {
         public void run() {
             if (!working) {
                 working = true;
-                String result = "";
+                String result;
                 yeshu++;
                 Calendar early = (Calendar) now.clone();
                 early.add(Calendar.MONTH, -1);
@@ -106,7 +96,7 @@ public class xiaoyuanka_2 extends Activity {
                 p = Pattern.compile("<TD align=right>(.*?)<",
                         Pattern.CASE_INSENSITIVE);
                 m = p.matcher(mainresult);
-                xiaofeiList = new ArrayList<String>();
+                xiaofeiList = new ArrayList<>();
                 while (m.find()) {
                     xiaofeiList.add(m.group(1));
                     adapterList2.add(m.group(1));
@@ -200,7 +190,7 @@ public class xiaoyuanka_2 extends Activity {
                         yueTextView.setText("￥ " + xiaofeiList.get(3));
                     }
                     if (adapterList == null) {
-                        adapterList = new ArrayList<String>();
+                        adapterList = new ArrayList<>();
                         out("创建新的list");
                     }
                     if (xiaofeiList.size() % 5 == 0) {
@@ -220,11 +210,10 @@ public class xiaoyuanka_2 extends Activity {
                                     // (TextView)findViewById(R.id.xiaoyuanka_zonge);
                                     // zongeTextView.setText("总额:￥ "+((int)(zonge*100))/100);
                                 }
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
                             }
 
                         }
-                    } else {
                     }
                     System.out.println(xiaofeiList.size());
 
@@ -241,7 +230,7 @@ public class xiaoyuanka_2 extends Activity {
                     list.onRefreshComplete();
                     out("更新列表UI完毕");
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
     };
@@ -283,7 +272,6 @@ public class xiaoyuanka_2 extends Activity {
         list.setOnScrollListener(new OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView arg0, int arg1) {
-                // TODO Auto-generated method stub
                 if (yeshu >= zongyeshu && zongyeshu != 0) {
                     out("已经滑动到最后一页," + yeshu + "/" + zongyeshu);
                     now.add(Calendar.MONTH, -1);
@@ -300,14 +288,12 @@ public class xiaoyuanka_2 extends Activity {
 
             @Override
             public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
-                // TODO Auto-generated method stub
 
             }
         });
         list.setOnRefreshListener(new OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                // TODO Auto-generated method stub
                 out("上拉加载事件");
                 executorService.submit(huoquxiaofeiRunnable);
             }
@@ -319,31 +305,16 @@ public class xiaoyuanka_2 extends Activity {
                 .edit();
         editor.remove("num_xiaoyuanka");
         editor.remove("psw_xiaoyuanka");
-        editor.commit();
+        editor.apply();
         Intent intent = new Intent();
         intent.setClass(thisActivity, xiaoyuanka.class);
         startActivity(intent);
         show("已退出帐号。");
     }
 
-    @SuppressWarnings("unused")
     public void myui() {
         try {
             out("设置校园卡数据UI");
-            DisplayMetrics mDisplayMetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
-            int width = mDisplayMetrics.widthPixels;
-            int height = mDisplayMetrics.heightPixels;
-            float density = mDisplayMetrics.density;
-            double w = width / 700.0;
-
-            mypoint head = setView(R.id.xiaoyuanka_head, 0, 0, width,
-                    width * 404 / 719);
-
-            mypoint xiaofei = setView(R.id.xiaoyuanka_xiaofei,
-                    (int) (0.04 * width), head.height + (int) (0.04 * width),
-                    (int) (0.46 * width), (int) (0.46 * width * 56 / 288));
-
             findViewById(R.id.xiaoyuanka_xiaofei).setVisibility(View.INVISIBLE);
 
             TextView left_userTextView = (TextView) thisActivity
@@ -353,8 +324,6 @@ public class xiaoyuanka_2 extends Activity {
             left_userTextView.setText(numString);
             left_user2TextView.setText("登录成功");
 
-            // mypoint list = setView(R.id.xiaoyuanka_list,
-            // 0,xiaofei.y+xiaofei.height+(int)(0.04*width),width,LayoutParams.WRAP_CONTENT);
             out("设置校园卡数据UI完毕");
         } catch (Exception e) {
             e.printStackTrace();
@@ -365,41 +334,8 @@ public class xiaoyuanka_2 extends Activity {
         System.out.println(o);
     }
 
-    public mypoint setView(int id, int x, int y, int wid, int hei) {
-        View myView = findViewById(id);
-        LayoutParams myParams = new LayoutParams(wid, hei);
-        myParams.setMargins(x, y, 0, 0);
-        myView.setLayoutParams(myParams);
-        return new mypoint(x, y, wid, hei);
-    }
-
-    void gengxin(String gx) {
-        gengxinString = gx;
-        Message message = new Message();
-        message.what = 1;
-        handler.sendMessage(message);
-    }
-
     public boolean find(String text, String w) {
-        if (text.indexOf(w) == -1)
-            return false;
-        else
-            return true;
-    }
-
-    public String zhongjian(String text, String textl, String textr) {
-        return zhongjian(text, textl, textr, 0);
-    }
-
-    public String zhongjian(String text, String textl, String textr, int start) {
-        try {
-            int left = text.indexOf(textl, start);
-            int right = text.indexOf(textr, left + textl.length());
-            return text.substring(left + textl.length(), right);
-        } catch (Exception e) {
-            System.out.println("zhongjian:error:" + e);
-            return "";
-        }
+        return text.indexOf(w) != -1;
     }
 
     @Override
@@ -448,35 +384,10 @@ public class xiaoyuanka_2 extends Activity {
 
     public String POST(String url, String postdata) {
         String result = "";
-        System.out.println(url);
-        HttpPost hPost = new HttpPost(url);
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
-        String posts[] = postdata.split("&");
-        String posts2[];
-        int i;
-        for (i = 0; i < posts.length; i++) {
-            posts2 = posts[i].split("=");
-            if (posts2.length == 2)
-                params.add(new BasicNameValuePair(posts2[0], posts2[1]));
-            else
-                params.add(new BasicNameValuePair(posts2[0], ""));
-        }
         try {
-            HttpEntity hen = new UrlEncodedFormEntity(params, "gb2312");
-            hPost.setEntity(hen);
-            xiaoyuanka.myClient.getParams().setParameter(
-                    CoreConnectionPNames.CONNECTION_TIMEOUT, 30000);
-            // 请求超时
-            xiaoyuanka.myClient.getParams().setParameter(
-                    CoreConnectionPNames.SO_TIMEOUT, 30000);
-            // 读取超时
-            HttpResponse hResponse;
-            hResponse = xiaoyuanka.myClient.execute(hPost);
-            if (hResponse.getStatusLine().getStatusCode() == 200) {
-                result = EntityUtils.toString(hResponse.getEntity());
-                result = new String(result.getBytes("ISO_8859_1"), "gbk");
-                // 转码
-            }
+            result = Common.commonPOST(url, postdata);
+            result = new String(result.getBytes("ISO_8859_1"), "gbk");
+            // 转码
         } catch (Exception e) {
             if (dialog2.isShowing())
                 dialog2.dismiss();
@@ -576,32 +487,11 @@ public class xiaoyuanka_2 extends Activity {
                 TextView timeTextView = (TextView) convertView
                         .findViewById(R.id.xiaoyuanka_list_time);
                 timeTextView.setText(time);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
 
             }
             return convertView;
         }
     }
 
-    public class mypoint {
-        int x;
-        int y;
-        int width;
-        int height;
-
-        public mypoint(int x, int y, int width, int height) {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
-    }
 }

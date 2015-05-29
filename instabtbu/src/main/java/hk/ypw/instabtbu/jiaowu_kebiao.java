@@ -1,6 +1,5 @@
 package hk.ypw.instabtbu;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -11,10 +10,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -23,18 +20,12 @@ import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EncodingUtils;
-import org.apache.http.util.EntityUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +39,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 /**
  * @author ypw
  */
-@SuppressLint({"HandlerLeak", "ClickableViewAccessibility"})
+
 public class jiaowu_kebiao extends SwipeBackActivity {
     long uiId = 0;
     String kebiaopath = "";
@@ -68,43 +59,39 @@ public class jiaowu_kebiao extends SwipeBackActivity {
     String gengxinString = "";
     String titlejuti = "";
     String jutiString = "";
-    String kebiaoString = "";
-    int kebiaoInt = 0;
     Activity thisActivity = this;
     private ProgressDialog dialog;
-
-    Common common;
 
     Runnable kebiaoRunnable = new Runnable() {
         @Override
         public void run() {
-            // TODO Auto-generated method stub
             try {
                 SharedPreferences sp = getSharedPreferences("data", 0);
                 xueqi = sp.getString("xueqi", "");
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
-            if (xueqi.length() == 0) {
-                xuanxueqi();
-            } else
-                getkebiao();
-
+            if (xueqi != null) {
+                if (xueqi.length() == 0) {
+                    xuanxueqi();
+                } else
+                    getkebiao();
+            }
         }
     };
     Runnable xuanRunnable = new Runnable() {
         @Override
         public void run() {
-            // TODO Auto-generated method stub
             xuanxueqi();
         }
     };
+
     Runnable getkebiaoRunnable = new Runnable() {
         @Override
         public void run() {
-            // TODO Auto-generated method stub
             getkebiao();
         }
     };
+
     private ExecutorService executorService = Executors.newCachedThreadPool();
     final Handler handler = new Handler() {
         @Override
@@ -123,15 +110,16 @@ public class jiaowu_kebiao extends SwipeBackActivity {
                     if (dialog.isShowing())
                         dialog.dismiss();
                 } else if (msg.what == 2) {
-                    List<String> xueqiList2 = new ArrayList<String>();
+                    List<String> xueqiList2 = new ArrayList<>();
                     SharedPreferences sp = getSharedPreferences("data", 0);
                     String num = sp.getString("num_jiaowu", null);
+                    assert num != null;
                     num = num.substring(0, 2);
                     int i;
                     for (i = 0; i < xueqiList.size(); i++) {
-                        String temp = xueqiList.get(i).toString();
+                        String temp = xueqiList.get(i);
                         xueqiList2.add(temp);
-                        if (temp.indexOf(num) != -1
+                        if (temp.contains(num)
                                 & (Integer.valueOf(temp.substring(
                                 temp.length() - 1, temp.length())) == 1))
                             break;
@@ -155,7 +143,7 @@ public class jiaowu_kebiao extends SwipeBackActivity {
                                             SharedPreferences.Editor editor = getSharedPreferences(
                                                     "data", 0).edit();
                                             editor.putString("xueqi", xueqi);
-                                            editor.commit();
+                                            editor.apply();
                                             a.dismiss();
                                             dialog = ProgressDialog.show(
                                                     thisActivity, "登录成功",
@@ -207,17 +195,27 @@ public class jiaowu_kebiao extends SwipeBackActivity {
             try {
                 SharedPreferences sp = getSharedPreferences("data", 0);
                 kebiaopath = sp.getString("lixiankebiao", "");
+                assert kebiaopath != null;
 
-                FileInputStream fin = new FileInputStream(kebiaopath);
-                int length = fin.available();
-                byte[] buffer = new byte[length];
-                fin.read(buffer);
-                result = EncodingUtils.getString(buffer, "UTF-8");
-                fin.close();
+                BufferedReader bufReader = new BufferedReader(new FileReader(kebiaopath));
+                String line;
+                result = "";
+                while( ( line = bufReader.readLine() ) != null)
+                {
+                    result += line;
+                }
+                bufReader.close();
+
+//                FileInputStream fin = new FileInputStream(kebiaopath);
+//                int length = fin.available();
+//                byte[] buffer = new byte[length];
+//                fin.read(buffer);
+//                result = EncodingUtils.getString(buffer, "UTF-8");
+//                fin.close();
+
                 System.out.println(result);
                 xueqi = "离线课表";
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             getkebiao(true);
@@ -230,15 +228,15 @@ public class jiaowu_kebiao extends SwipeBackActivity {
             SharedPreferences.Editor editor = getSharedPreferences("data", 0)
                     .edit();
             editor.putString("lixiankebiao", filepath + xueqi + ".html");
-            editor.commit();
+            editor.apply();
 
             System.out.println(getFilesDir().toString());
             result = result.replaceAll("style=\"display: none;\"", "");
             result = result
                     .replaceAll("-1\" ", "-1\" style=\"display: none;\"");
-            result = result.replaceAll(zhongjian(result, "<link", ">"), "");
-            while (result.indexOf("<script") == -1)
-                result = result.replaceAll(zhongjian(result, "<script", ">"),
+            result = result.replaceAll(Common.zhongjian(result, "<link", ">"), "");
+            while (!result.contains("<script"))
+                result = result.replaceAll(Common.zhongjian(result, "<script", ">"),
                         "");
 
             File file = new File(filepath + xueqi + ".html");
@@ -246,9 +244,9 @@ public class jiaowu_kebiao extends SwipeBackActivity {
             writer.write(result);
             writer.close();
             kebiaopath = filepath + xueqi + ".html";
-        } catch (Exception e1) {
+        } catch (Exception e) {
             System.out.println(filepath + xueqi + ".html");
-            System.out.println(e1);
+            e.printStackTrace();
             show("保存文件失败，请检查权限。");
 
         }
@@ -268,14 +266,14 @@ public class jiaowu_kebiao extends SwipeBackActivity {
         }
 
         try {
-            p = Pattern.compile("<div id=\"(.+?)-2\".*?>(.+?)</div>");
+            p = Pattern.compile(getString(R.string.regexKebiao));
             m = p.matcher(result);
             String temp;
             while (m.find()) {
                 shijian.add(m.group(1));
                 temp = m.group(2);
                 Pattern p2 = Pattern
-                        .compile("&nbsp;(.*?)<br>(.+?)<br>(.*?)<br><nobr> *(.*?)<nobr><br>(.*?)<br>(.*?)<br>");
+                        .compile(getString(R.string.regexKebiaoDetail));
                 Matcher m2 = p2.matcher(temp);
                 if (m2.find()) {
                     mingcheng.add(m2.group(1));
@@ -285,10 +283,10 @@ public class jiaowu_kebiao extends SwipeBackActivity {
                     // xiangxi.add(myString.substring(0,myString.length()-1));
                     temp = temp.replace("&nbsp;", "");
                     System.out.println(temp);
-                    Pattern p3 = Pattern.compile("<.+?> *");
+                    Pattern p3 = Pattern.compile(getString(R.string.regexKebiao3));
                     Matcher m3 = p3.matcher(temp);
                     temp = m3.replaceAll("\n");
-                    while (temp.indexOf("\n\n") != -1) {
+                    while (temp.contains("\n\n")) {
                         temp = temp.replace("\n\n", "\n");
                     }
                     temp = temp.substring(0, temp.length() - 1);
@@ -298,30 +296,30 @@ public class jiaowu_kebiao extends SwipeBackActivity {
 
                     if (tempStrings.length == 5) {
                         String myString = "";
-                        if (tempStrings[3].indexOf("单周") != -1)
+                        if (tempStrings[3].contains("单周"))
                             myString += "单周\n";
-                        else if (tempStrings[3].indexOf("双周") != -1)
+                        else if (tempStrings[3].contains("双周"))
                             myString += "双周\n";
                         myString += tempStrings[4];
                         didian.add(myString);
                     } else if (tempStrings.length == 6) {
-                        if (tempStrings[4].indexOf("暂无") == -1)
+                        if (!tempStrings[4].contains("暂无"))
                             didian.add(tempStrings[4] + "\n" + tempStrings[5]);
                         else
                             didian.add(tempStrings[5]);
                     } else if (tempStrings.length == 10) {
                         String myString = "";
-                        if (tempStrings[3].indexOf("单周") != -1)
+                        if (tempStrings[3].contains("单周"))
                             myString += "单周\n";
-                        else if (tempStrings[3].indexOf("双周") != -1)
+                        else if (tempStrings[3].contains("双周"))
                             myString += "双周\n";
                         else
                             myString += tempStrings[3] + "\n";
                         myString += tempStrings[4] + "\n";
 
-                        if (tempStrings[8].indexOf("单周") != -1)
+                        if (tempStrings[8].contains("单周"))
                             myString += "单周\n";
-                        else if (tempStrings[8].indexOf("双周") != -1)
+                        else if (tempStrings[8].contains("双周"))
                             myString += "双周\n";
                         else
                             myString += tempStrings[8] + "\n";
@@ -330,17 +328,17 @@ public class jiaowu_kebiao extends SwipeBackActivity {
                         didian.add(myString);
                     } else if (tempStrings.length == 12) {
                         String myString = "";
-                        if (tempStrings[3].indexOf("单周") != -1)
+                        if (tempStrings[3].contains("单周"))
                             myString += "单周\n";
-                        else if (tempStrings[3].indexOf("双周") != -1)
+                        else if (tempStrings[3].contains("双周"))
                             myString += "双周\n";
                         else
                             myString += tempStrings[3];
                         myString += tempStrings[4] + tempStrings[5] + "\n";
 
-                        if (tempStrings[9].indexOf("单周") != -1)
+                        if (tempStrings[9].contains("单周"))
                             myString += "单周\n";
-                        else if (tempStrings[9].indexOf("双周") != -1)
+                        else if (tempStrings[9].contains("双周"))
                             myString += "双周\n";
                         else
                             myString += tempStrings[9];
@@ -355,7 +353,7 @@ public class jiaowu_kebiao extends SwipeBackActivity {
                     didian.add("");
                 }
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         System.out.println("finished kebiao");
         Message message = new Message();
@@ -372,7 +370,7 @@ public class jiaowu_kebiao extends SwipeBackActivity {
     public void xuanxueqi() {
         System.out.println("开始选学期");
         result = POST("http://jwgl.btbu.edu.cn/tkglAction.do?method=kbxxXs", "");
-        p = Pattern.compile("<option value=\".*?\".*?>(.*?)</option>");
+        p = Pattern.compile(getString(R.string.regexKebiao_Xueqi));
         m = p.matcher(result);
         m.find();
         while (m.find()) {
@@ -400,13 +398,6 @@ public class jiaowu_kebiao extends SwipeBackActivity {
         show(v.toString());
     }
 
-    void gengxin(String gx) {
-        gengxinString = gx;
-        Message message = new Message();
-        message.what = 3;
-        handler.sendMessage(message);
-    }
-
     public void jutikebiao() {
         new AlertDialog.Builder(jiaowu_kebiao.this).setTitle(titlejuti)
                 .setMessage(jutiString).setPositiveButton("确定", null).show();
@@ -419,30 +410,10 @@ public class jiaowu_kebiao extends SwipeBackActivity {
         return hang + 1;
     }
 
-    ;
-
-    @SuppressWarnings("unused")
-    public void myui() {
-
-        DisplayMetrics mDisplayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
-        int width = mDisplayMetrics.widthPixels;
-    }
-
-    public String zhongjian(String text, String textl, String textr) {
-        return zhongjian(text, textl, textr, 0);
-    }
-
-    public String zhongjian(String text, String textl, String textr, int start) {
-        int left = text.indexOf(textl, start);
-        int right = text.indexOf(textr, left + textl.length());
-        return text.substring(left + textl.length(), right);
-    }
-
     public String POST(String url, String postdata) {
         String result = "";
         try {
-            result = common.commonPOST(url, postdata);
+            result = Common.commonPOST(url, postdata);
         } catch (Exception e) {
             if (dialog.isShowing())
                 dialog.dismiss();
@@ -451,10 +422,6 @@ public class jiaowu_kebiao extends SwipeBackActivity {
 
         }
         return (result);
-    }
-
-    public void show(String str) {
-        show(str, 0);
     }
 
     public void yuanshikebiao(View v) {
@@ -467,6 +434,10 @@ public class jiaowu_kebiao extends SwipeBackActivity {
         Intent intent = new Intent();
         intent.setClass(thisActivity, jiaowu_yuanshikebiao.class);
         startActivity(intent);
+    }
+
+    public void show(String str) {
+        show(str, 0);
     }
 
     public void show(String str, int d) {
@@ -483,7 +454,6 @@ public class jiaowu_kebiao extends SwipeBackActivity {
                     .show();
     }
 
-    @SuppressLint("InflateParams")
     private class CustomAdapter extends BaseAdapter {
         private List<String> mData;
         private LayoutInflater mInflater;
@@ -525,16 +495,14 @@ public class jiaowu_kebiao extends SwipeBackActivity {
                     R.id.jiaowu_zhousan, R.id.jiaowu_zhousi, R.id.jiaowu_zhouwu};
             int i;
             try {
-                List<TextView> zhouList = new ArrayList<TextView>();
                 for (i = 0; i < 5; i++) {
                     TextView tempTextView = (TextView) convertView
                             .findViewById(myid[i]);
-                    zhouList.add(tempTextView);
                     if (position % 2 == 0)
                         tempTextView.setBackgroundColor(0xFFF2F2F2);
                     tempTextView.setText(mingcheng.get(position * 7 + i) + "\n"
                             + didian.get(position * 7 + i));
-                    int j = 0;
+                    int j;
                     int hang = quhangshu(mingcheng.get(position * 7 + i) + "\n"
                             + didian.get(position * 7 + i));
                     if (mingcheng.get(position * 7 + i).length() > 5)
@@ -543,28 +511,27 @@ public class jiaowu_kebiao extends SwipeBackActivity {
                         hang++;
                     for (j = 0; j < 5 - hang; j++)
                         tempTextView.append("\n");
-                    if (xiangxi.get(position * 7 + i).indexOf("单周") != -1
-                            || xiangxi.get(position * 7 + i).indexOf("双周") != -1) {
+                    if (xiangxi.get(position * 7 + i).contains("单周")
+                            || xiangxi.get(position * 7 + i).contains("双周")) {
                         tempTextView.setBackgroundColor(0X223474AC);
                     }
                     tempTextView.setTag(position * 7 + i);
-                    tempTextView.setOnClickListener(new OnClickListener() {
+                    tempTextView.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
-                            // TODO Auto-generated method stub
+                        public void onClick(View view) {
                             try {
-                                jutiString = xiangxi.get(Integer.valueOf(v
+                                jutiString = xiangxi.get(Integer.valueOf(view
                                         .getTag().toString()));
-                                titlejuti = mingcheng.get(Integer.valueOf(v
+                                titlejuti = mingcheng.get(Integer.valueOf(view
                                         .getTag().toString()));
                                 if (jutiString.length() != 0)
                                     jutikebiao();
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
                             }
                         }
                     });
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
             return convertView;
         }

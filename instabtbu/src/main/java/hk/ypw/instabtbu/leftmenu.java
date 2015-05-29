@@ -1,6 +1,5 @@
 package hk.ypw.instabtbu;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +13,6 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 import com.umeng.analytics.MobclickAgent;
 
-@SuppressLint("ClickableViewAccessibility")
 public class Leftmenu {
     SlidingMenu menu;
     Activity thisActivity;
@@ -48,11 +46,10 @@ public class Leftmenu {
         menu.setOnClosedListener(new OnClosedListener() {
             @Override
             public void onClosed() {
-                // TODO Auto-generated method stub
                 System.out.println("关闭菜单");
                 try {
                     setalpha();
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         });
@@ -60,11 +57,10 @@ public class Leftmenu {
         menu.setOnOpenedListener(new OnOpenedListener() {
             @Override
             public void onOpened() {
-                // TODO Auto-generated method stub
                 System.out.println("打开菜单");
                 try {
                     setalpha();
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
                 /**
                  * 在菜单被打开完毕之后,我们把登录按钮的透明度调到255,这样避免了按钮变灰的bug
@@ -74,7 +70,6 @@ public class Leftmenu {
         menu.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 System.out.println("滑动菜单被点击");
                 menu.toggle();
                 /**
