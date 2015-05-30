@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +19,6 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,7 +85,7 @@ public class xiaoyuanka_2 extends Activity {
                 result = POST("http://card.btbu.edu.cn/CardWeb/finance.asp",
                         postdata);
 
-                if (find(result, "没有相关信息")) {
+                if (result.contains("没有相关信息")) {
                     out("没有相关信息,提前一个月继续寻找");
                     now.add(Calendar.MONTH, -1);
                 }
@@ -202,7 +200,7 @@ public class xiaoyuanka_2 extends Activity {
                                     + xiaofeiList.get(i * 5 + 2) + "元";
                             adapterList.add(tmp);
                             try {
-                                if (find(xiaofeiList.get(i * 5 + 1), "消费")) {
+                                if (xiaofeiList.get(i * 5 + 1).contains("消费")) {
                                     zonge += Double.valueOf(xiaofeiList
                                             .get(i * 5 + 2));
                                     out("总额:" + zonge);
@@ -334,10 +332,6 @@ public class xiaoyuanka_2 extends Activity {
         System.out.println(o);
     }
 
-    public boolean find(String text, String w) {
-        return text.indexOf(w) != -1;
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -444,11 +438,11 @@ public class xiaoyuanka_2 extends Activity {
 
                 ImageView typeImageView = (ImageView) convertView
                         .findViewById(R.id.xiaoyuanka_list_typeimg);
-                if (find(type, "消费")) {
+                if (type.contains("消费")) {
                     typeImageView
                             .setBackgroundResource(R.drawable.xiaoyuanka_xiaofei);
                     jineTextView.setTextColor(0xFF000000);
-                } else if (find(type, "充值")) {
+                } else if (type.contains("充值")) {
                     typeImageView
                             .setBackgroundResource(R.drawable.xiaoyuanka_chongzhi);
                     jineTextView.setTextColor(0xFF39B54A);
@@ -479,7 +473,7 @@ public class xiaoyuanka_2 extends Activity {
                     }
                 }
 
-                if (find(didian, "组团")) {
+                if (didian.contains("组团")) {
                     didianTextView.setText("浴室圈存");
                 } else
                     didianTextView.setText(didian);

@@ -251,7 +251,7 @@ public class jiaowuchaxun extends Activity {
 
         dialog2 = ProgressDialog.show(jiaowuchaxun.this, "正在登录", "正在登录中……",
                 true, true);
-        Common.commonClient = new DefaultHttpClient();
+        Common.resetClient();
         executorService.submit(chengjiRunnable);
     }
 
@@ -268,7 +268,7 @@ public class jiaowuchaxun extends Activity {
 
             dialog2 = ProgressDialog.show(thisActivity, "正在登录", "正在登录中……",
                     true, true);
-            Common.commonClient = new DefaultHttpClient();
+            Common.resetClient();
             executorService.submit(kebiaoRunnable);
             wificonnected = true;
         } else {

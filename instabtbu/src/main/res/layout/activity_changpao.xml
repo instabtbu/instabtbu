@@ -34,7 +34,6 @@
         android:layout_height="27dp"
         android:layout_alignTop="@+id/changpao_num2"
         android:layout_toLeftOf="@+id/changpao_num2"
-        android:contentDescription="@string/app_name"
         android:src="@drawable/changpao_num_left" />
 
     <ImageView
@@ -43,7 +42,6 @@
         android:layout_height="27dp"
         android:layout_alignTop="@+id/changpao_psw2"
         android:layout_toLeftOf="@+id/changpao_psw2"
-        android:contentDescription="@string/app_name"
         android:src="@drawable/changpao_psw_left" />
 
     <ImageView
@@ -211,7 +209,7 @@
 
     <ImageView
         android:id="@+id/img_bar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -221,7 +219,6 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/imageView1"
         android:layout_alignTop="@+id/imageView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"

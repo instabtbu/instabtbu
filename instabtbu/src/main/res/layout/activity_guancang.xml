@@ -81,6 +81,7 @@
                     android:layout_alignRight="@+id/guancang_head"
                     android:layout_below="@+id/guancang_search"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="16dp"
                     android:src="@drawable/guancang_head2" />
 
             </RelativeLayout>

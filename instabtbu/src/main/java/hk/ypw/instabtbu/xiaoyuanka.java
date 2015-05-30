@@ -23,9 +23,6 @@ import android.widget.Toast;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.umeng.analytics.MobclickAgent;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -36,8 +33,7 @@ import java.util.regex.Pattern;
 @SuppressLint({"HandlerLeak", "WorldReadableFiles"})
 public class xiaoyuanka extends Activity {
 
-    static List<String> xinxiList = new ArrayList<String>();
-    static HttpClient myClient = new DefaultHttpClient();
+    static List<String> xinxiList = new ArrayList<>();
     Leftmenu Leftmenu;
     SlidingMenu menu;
     long uiId = 0;
@@ -63,7 +59,7 @@ public class xiaoyuanka extends Activity {
             if (find(result, numString) && numString.length() > 0) {
                 System.out.println("校园卡登录成功" + numString);
 
-                xinxiList = new ArrayList<String>();
+                xinxiList = new ArrayList<>();
                 p = Pattern
                         .compile("<div align=\"center\">(.+)</div></td>\r\n +</tr>");
                 m = p.matcher(result);

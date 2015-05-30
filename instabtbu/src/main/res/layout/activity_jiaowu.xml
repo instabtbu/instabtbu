@@ -107,7 +107,8 @@
                     android:layout_alignLeft="@+id/jiaowu_chengji"
                     android:layout_alignRight="@+id/jiaowu_chengji"
                     android:layout_below="@+id/jiaowu_chengji"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:onClick="xiaoli"
                     android:src="@drawable/jiaowu_xiaoli" />
 

@@ -394,6 +394,9 @@ public class Common {
 
     static HttpClient commonClient = new DefaultHttpClient();
 
+    public static void resetClient(){
+        Common.commonClient = new DefaultHttpClient();
+    }
     public static String commonPOST(String url, String postdata) throws IOException {
         String result = "";
         HttpPost hPost = new HttpPost(url);

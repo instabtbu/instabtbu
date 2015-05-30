@@ -9,7 +9,8 @@
         android:id="@+id/xiaoyuanka_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/xiaoyuanka_head" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/xiaoyuanka_head" />
 
     <ImageView
         android:id="@+id/xiaoyuanka_xiaofei"
@@ -22,11 +23,9 @@
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/xiaoyuanka_list"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_below="@+id/xiaoyuanka_head"
         android:layout_marginTop="0dp"
         android:background="#FFFFFF">
