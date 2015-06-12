@@ -372,9 +372,8 @@ public class shangwang extends Activity {
         TextView liuliangTextView = (TextView) findViewById(R.id.shangwang_textliuliang);
         TextView shebeiTextView = (TextView) findViewById(R.id.shangwang_textshebei);
         /**
-         * 在这个函数中找到界面中的元素的实例,没有实例就无法操作界面上的元素 举个例子,你需要把textview流量上面的字改成12345
-         * MB,你需要这样做: TextView liuliangTextView =
-         * (TextView)findViewById(R.id.shangwang_textliuliang);
+         * 在这个函数中找到界面中的元素的实例,没有实例就无法操作界面上的元素 举个例子,你需要把textview流量上面的字改成12345 MB
+         * 你需要这样做: TextView liuliangTextView = (TextView)findViewById(R.id.shangwang_textliuliang);
          * liuliangTextView.setText("12345 MB");
          * 第一行从R文件中寻找到了Id,然后从Id寻找到了View,再将View强制类型转换到TextView
          * 为什么要强制类型转换呢,因为View没有setText这个方法 所以我们要这样写
@@ -388,6 +387,8 @@ public class shangwang extends Activity {
             String shebei = sp.getString("shebei", "");
             String zidong = sp.getString("zidong", "");
             String zidongcha = sp.getString("zidongcha", "");
+            String zidongvpn = sp.getString("zidongvpn", "");
+
             /**
              * SharedPreferences是一种轻型的数据存储方式,它的本质是基于XML文件存储key-value键值对数据
              * 通常用来存储一些简单的配置信息,我们在这里存储帐号密码,因为没有比这个更方便的方法了.
@@ -399,23 +400,6 @@ public class shangwang extends Activity {
              * zidong(自动登录),zidongcha(自动查流量),自动查流量这个勾勾是为了避免包流量又没交钱的用户掉线.
              */
 
-            editText_num.setText(num);
-            editText_psw.setText(psw);
-            if (liuliang != null) {
-                if (liuliang.length() != 0)
-                    liuliangTextView.setText(liuliang + " MB");
-            }
-            if (shebei != null) {
-                if (shebei.length() != 0)
-                    shebeiTextView.setText(shebei);
-            }
-            if (find(zidongcha, "z"))
-                zidongchaImageView
-                        .setBackgroundResource(R.drawable.shangwang_zidongcha1);
-            else
-                zidongchaImageView
-                        .setBackgroundResource(R.drawable.shangwang_zidongcha0);
-
             /**
              * 这里我们让num和psw的编辑框显示上次登录成功之后保存的帐号和密码,
              * 然后如果上次保存了流量(判断它的长度是否等于0),我们才显示流量,避免出现null这样的字眼.
@@ -425,8 +409,6 @@ public class shangwang extends Activity {
              * 其中,find函数是我自己定义的一个函数,用法在定义处有.功能是寻找有没有某字符串.
              */
 
-            if (find(zidongcha, "z") && Common.isWifiConnected(this))
-                executorService.submit(rChaliuliang);
             /**
              * 如果自动查流量的功能开启了,那我们就把chaliuliang2这个任务投入线程池中 线程池的语法: private
              * ExecutorService executorService =
@@ -435,6 +417,27 @@ public class shangwang extends Activity {
              * (如果你想知道它在哪里被定义了,请点击executorService按F3) 第二句就是把一个Runnable投入到线程池中.
              * 一个Runnable相当于一个任务(task) 之后会有Runnable的写法.
              */
+
+            editText_num.setText(num);
+            editText_psw.setText(psw);
+                if (liuliang.length() != 0)
+                    liuliangTextView.setText(liuliang + " MB");
+                if (shebei.length() != 0)
+                    shebeiTextView.setText(shebei);
+
+//            if (find(zidongcha, "z"))
+//                zidongchaImageView
+//                        .setBackgroundResource(R.drawable.shangwang_zidongcha1);
+//            else
+//                zidongchaImageView
+//                        .setBackgroundResource(R.drawable.shangwang_zidongcha0);
+
+//            if (find(zidongcha, "z") && Common.isWifiConnected(this))
+//                executorService.submit(rChaliuliang);
+
+            if (find(zidongvpn, "z"))
+                zidongchaImageView.setBackgroundResource(R.drawable.shangwang_zidongvpn1);
+            else zidongchaImageView.setBackgroundResource(R.drawable.shangwang_zidongvpn0);
 
             if (find(zidong, "z")) {
                 zidongdengluImageView
@@ -527,20 +530,19 @@ public class shangwang extends Activity {
         zidongchaImageView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView imageView = (ImageView) findViewById(R.id.shangwang_zidongcha);
+                ImageView zidongchaImageView = (ImageView) findViewById(R.id.shangwang_zidongcha);
                 SharedPreferences sp = getSharedPreferences("data", 0);
-                String zidongcha = sp.getString("zidongcha", "");
+                String zidongvpn = sp.getString("zidongvpn", "");
                 SharedPreferences.Editor editor = getSharedPreferences("data",
                         0).edit();
-                System.out.println(zidongcha);
-                if (!find(zidongcha, "z")) {
-                    editor.putString("zidongcha", "z");
-                    imageView
-                            .setBackgroundResource(R.drawable.shangwang_zidongcha1);
+                System.out.println(zidongvpn);
+
+                if (!find(zidongvpn, "z")) {
+                    editor.putString("zidongvpn", "z");
+                    zidongchaImageView.setBackgroundResource(R.drawable.shangwang_zidongvpn1);
                 } else {
-                    editor.putString("zidongcha", "f");
-                    imageView
-                            .setBackgroundResource(R.drawable.shangwang_zidongcha0);
+                    editor.putString("zidongvpn", "f");
+                    zidongchaImageView.setBackgroundResource(R.drawable.shangwang_zidongvpn0);
                 }
                 editor.apply();
             }

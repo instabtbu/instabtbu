@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignRight="@+id/shangwang_duankai"
                     android:layout_alignTop="@+id/shangwang_zidongdenglu"
-                    android:background="@drawable/shangwang_zidongcha0" />
+                    android:background="@drawable/shangwang_zidongvpn0" />
 
                 <ImageView
                     android:id="@+id/shangwang_liulianggoumai"
