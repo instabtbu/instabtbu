@@ -381,13 +381,14 @@ public class shangwang extends Activity {
 
         try {
             SharedPreferences sp = getSharedPreferences("data", 0);
+            String zidongvpn = sp.getString("zidongvpn", "");
             String num = sp.getString("num", "");
             String psw = sp.getString("psw", "");
             String liuliang = sp.getString("liuliang", "");
             String shebei = sp.getString("shebei", "");
             String zidong = sp.getString("zidong", "");
-            String zidongcha = sp.getString("zidongcha", "");
-            String zidongvpn = sp.getString("zidongvpn", "");
+            //String zidongcha = sp.getString("zidongcha", "");
+
 
             /**
              * SharedPreferences是一种轻型的数据存储方式,它的本质是基于XML文件存储key-value键值对数据
@@ -454,6 +455,7 @@ public class shangwang extends Activity {
                         .setBackgroundResource(R.drawable.shangwang_zidongdenglu0);
 
         } catch (Exception ex) {
+            ex.printStackTrace();
             SharedPreferences.Editor editor = getSharedPreferences("data", 0)
                     .edit();
             editor.putString("num", "");

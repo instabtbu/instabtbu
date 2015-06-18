@@ -100,6 +100,7 @@ public class jiaowuchaxun extends Activity {
             } catch (Exception e) {
                 if (dialog2.isShowing())
                     dialog2.dismiss();
+                e.printStackTrace();
             }
             if (dialog2.isShowing())
                 dialog2.dismiss();
@@ -170,13 +171,6 @@ public class jiaowuchaxun extends Activity {
         }
     };
 
-    public static boolean isWifiConnected(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo wifiNetworkInfo = connectivityManager
-                .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        return wifiNetworkInfo.isConnected();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -241,23 +235,32 @@ public class jiaowuchaxun extends Activity {
     }
 
     public void chengji(View v) {
-        EditText numEditText = (EditText) findViewById(R.id.changpao_num2);
-        EditText pswEditText = (EditText) findViewById(R.id.changpao_psw2);
-        SharedPreferences.Editor editor = getSharedPreferences("data", 0)
-                .edit();
-        editor.putString("num_jiaowu", numEditText.getText().toString());
-        editor.putString("psw_jiaowu", pswEditText.getText().toString());
-        editor.apply();
+        if (Common.isWifiConnected(thisActivity)) {
+            EditText numEditText = (EditText) findViewById(R.id.changpao_num2);
+            EditText pswEditText = (EditText) findViewById(R.id.changpao_psw2);
+            SharedPreferences.Editor editor = getSharedPreferences("data", 0)
+                    .edit();
+            editor.putString("num_jiaowu", numEditText.getText().toString());
+            editor.putString("psw_jiaowu", pswEditText.getText().toString());
+            editor.apply();
 
-        dialog2 = ProgressDialog.show(jiaowuchaxun.this, "正在登录", "正在登录中……",
-                true, true);
-        Common.resetClient();
-        executorService.submit(chengjiRunnable);
+            dialog2 = ProgressDialog.show(jiaowuchaxun.this, "正在登录", "正在登录中……",
+                    true, true);
+            Common.resetClient();
+            executorService.submit(chengjiRunnable);
+        }else {
+            SharedPreferences sp = getSharedPreferences("data", 0);
+            String zidongvpn = sp.getString("zidongvpn", "");
+            if(zidongvpn.contains("z")){
+
+            }else{
+                show("请连接BTBU或打开");
+            }
+        }
     }
 
     public void kebiao(View v) {
-
-        if (isWifiConnected(thisActivity)) {
+        if (Common.isWifiConnected(thisActivity)) {
             EditText numEditText = (EditText) findViewById(R.id.changpao_num2);
             EditText pswEditText = (EditText) findViewById(R.id.changpao_psw2);
             SharedPreferences.Editor editor = getSharedPreferences("data", 0)

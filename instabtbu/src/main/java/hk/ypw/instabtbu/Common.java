@@ -389,7 +389,11 @@ public class Common {
         // ==================================================================
         int left = text.indexOf(textl, start);
         int right = text.indexOf(textr, left + textl.length());
-        return text.substring(left + textl.length(), right);
+        String zhongjianString = "";
+        try{
+            zhongjianString = text.substring(left + textl.length(), right);
+        }catch (Exception ignore){}
+        return zhongjianString;
     }
 
     static HttpClient commonClient = new DefaultHttpClient();

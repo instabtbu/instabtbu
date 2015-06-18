@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -49,171 +50,178 @@ public class jiaowu_chengji extends SwipeBackActivity {
     Activity thisActivity = this;
     private ProgressDialog dialog;
 
+    public void neiwangChengji() {
+        Pattern p;
+        Matcher m;
+        result = POST(
+                "http://jwgl.btbu.edu.cn/xszqcjglAction.do?method=queryxscj",
+                "PageNum=1");
+        gengxin("获取第一页成绩成功，分析中……");
+        // System.out.println(result);
+        jidian = Common.zhongjian(result, "平均学分绩点<span>", "。</span>");
+        int i = 0;
+        String tempString;
+        String kemuString = "";
+        String chengjiString = "";
+        String showString = "";
+        showString += "绩点：" + jidian;
+        random = new Random();
+        SystemClock.sleep(random.nextInt(120));
+        p = Pattern.compile(getString(R.string.regexChengji));
+        m = p.matcher(result);
+        while (m.find()) {
+            Pattern p2 = Pattern.compile(getString(R.string.regexChengji2));
+            Matcher m2 = p2.matcher(m.group(0));
+            if (pangtingsheng) {
+                // 旁听生
+                while (m2.find()) {
+                    tempString = m2.group(1);
+                    if (i % 10 == 2) {
+                        kemuString = tempString;
+                        if (kemuString.indexOf('<') == -1)
+                            kechengmingcheng.add(tempString);
+                    } else if (i % 10 == 3) {
+                        chengji.add(Common.zhongjian(tempString, ")\">", "</a>"));
+                        chengjiString = Common.zhongjian(tempString, ")\">",
+                                "</a>");
+                        urlList.add("http://jwgl.btbu.edu.cn"
+                                + Common.zhongjian(tempString, "JsMod('", "\""));
+                    } else if (i % 10 == 8) {
+                        xuefen.add(tempString);
+                        showString += "\n" + kemuString + "\t"
+                                + chengjiString;
+                        gengxin(showString);
+                        SystemClock.sleep(random.nextInt(100));
+                    }
+                    i++;
+                }
+            } else {
+                // 普通学生
+                while (m2.find()) {
+                    tempString = m2.group(1);
+                    if (i % 13 == 4) {
+                        kemuString = tempString;
+                        if (kemuString.indexOf('<') == -1)
+                            kechengmingcheng.add(tempString);
+                    } else if (i % 13 == 5) {
+                        chengji.add(Common.zhongjian(tempString, ")\">", "</a>"));
+                        chengjiString = Common.zhongjian(tempString, ")\">",
+                                "</a>");
+                        urlList.add("http://jwgl.btbu.edu.cn"
+                                + Common.zhongjian(tempString, "JsMod('", "\""));
+                    } else if (i % 13 == 10) {
+                        xuefen.add(tempString);
+                        showString += "\n" + kemuString + "\t"
+                                + chengjiString;
+                        gengxin(showString);
+                        SystemClock.sleep(random.nextInt(100));
+                    }
+                    i++;
+                }
+            }
+        }
+        try {
+            int ye;
+            p = Pattern.compile(getString(R.string.regexChengji_ye));
+            m = p.matcher(result);
+            if (m.find()) {
+                String yeString = m.group(2);
+                ye = Integer.valueOf(yeString);
+                int xh = 2;
+                while (xh <= ye) {
+                    showString += "\n共" + String.valueOf(ye) + "页,正在获取第"
+                            + String.valueOf(xh) + "页……";
+                    gengxin(showString);
+                    i = 0;
+                    result = POST(
+                            "http://jwgl.btbu.edu.cn/xszqcjglAction.do?method=queryxscj",
+                            "PageNum=" + String.valueOf(xh));
+                    showString += "\n获取成功，正在分析第" + String.valueOf(xh) + "页……";
+                    gengxin(showString);
+                    System.out.println("PageNum=" + String.valueOf(xh));
+                    SystemClock.sleep(random.nextInt(120));
+                    p = Pattern.compile(getString(R.string.regexChengji3));
+                    m = p.matcher(result);
+                    while (m.find()) {
+                        Pattern p2 = Pattern
+                                .compile(getString(R.string.regexChengji4));
+                        Matcher m2 = p2.matcher(m.group(0));
+                        if (pangtingsheng) {
+                            // 旁听生
+                            while (m2.find()) {
+                                tempString = m2.group(1);
+                                if (i % 10 == 2) {
+                                    kemuString = tempString;
+                                    if (kemuString.indexOf('<') == -1)
+                                        kechengmingcheng.add(tempString);
+                                } else if (i % 10 == 3) {
+                                    chengji.add(Common.zhongjian(tempString, ")\">",
+                                            "</a>"));
+                                    chengjiString = Common.zhongjian(tempString,
+                                            ")\">", "</a>");
+                                    urlList.add("http://jwgl.btbu.edu.cn"
+                                            + Common.zhongjian(tempString, "JsMod('",
+                                            "\""));
+                                } else if (i % 10 == 8) {
+                                    xuefen.add(tempString);
+                                    showString += "\n" + kemuString + "\t"
+                                            + chengjiString;
+                                    gengxin(showString);
+                                    SystemClock.sleep(random.nextInt(100));
+                                }
+                                i++;
+                            }
+                        } else {
+                            // 普通学生
+                            while (m2.find()) {
+                                tempString = m2.group(1);
+                                if (i % 13 == 4) {
+                                    kemuString = tempString;
+                                    if (kemuString.indexOf('<') == -1)
+                                        kechengmingcheng.add(tempString);
+                                } else if (i % 13 == 5) {
+                                    chengji.add(Common.zhongjian(tempString, ")\">",
+                                            "</a>"));
+                                    chengjiString = Common.zhongjian(tempString,
+                                            ")\">", "</a>");
+                                    urlList.add("http://jwgl.btbu.edu.cn"
+                                            + Common.zhongjian(tempString, "JsMod('",
+                                            "\""));
+                                } else if (i % 13 == 10) {
+                                    xuefen.add(tempString);
+                                    showString += "\n" + kemuString + "\t"
+                                            + chengjiString;
+                                    gengxin(showString);
+                                    SystemClock.sleep(random.nextInt(100));
+                                }
+                                i++;
+                            }
+                        }
+                    }
+                    xh++;
+                    SystemClock.sleep(random.nextInt(100));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Message message = new Message();
+        message.what = 1;
+        handler.sendMessage(message);
+        System.out.println("finished chengji");
+        if (dialog.isShowing())
+            dialog.dismiss();
+    }
+
     Runnable chengjiRunnable = new Runnable() {
         @Override
         public void run() {
-
-            Pattern p;
-            Matcher m;
-            result = POST(
-                    "http://jwgl.btbu.edu.cn/xszqcjglAction.do?method=queryxscj",
-                    "PageNum=1");
-            gengxin("获取第一页成绩成功，分析中……");
-            // System.out.println(result);
-            jidian = Common.zhongjian(result, "平均学分绩点<span>", "。</span>");
-            int i = 0;
-            String tempString;
-            String kemuString = "";
-            String chengjiString = "";
-            String showString = "";
-            showString += "绩点：" + jidian;
-            random = new Random();
-            SystemClock.sleep(random.nextInt(120));
-            p = Pattern.compile(getString(R.string.regexChengji));
-            m = p.matcher(result);
-            while (m.find()) {
-                Pattern p2 = Pattern.compile(getString(R.string.regexChengji2));
-                Matcher m2 = p2.matcher(m.group(0));
-                if (pangtingsheng) {
-                    // 旁听生
-                    while (m2.find()) {
-                        tempString = m2.group(1);
-                        if (i % 10 == 2) {
-                            kemuString = tempString;
-                            if (kemuString.indexOf('<') == -1)
-                                kechengmingcheng.add(tempString);
-                        } else if (i % 10 == 3) {
-                            chengji.add(Common.zhongjian(tempString, ")\">", "</a>"));
-                            chengjiString = Common.zhongjian(tempString, ")\">",
-                                    "</a>");
-                            urlList.add("http://jwgl.btbu.edu.cn"
-                                    + Common.zhongjian(tempString, "JsMod('", "\""));
-                        } else if (i % 10 == 8) {
-                            xuefen.add(tempString);
-                            showString += "\n" + kemuString + "\t"
-                                    + chengjiString;
-                            gengxin(showString);
-                            SystemClock.sleep(random.nextInt(100));
-                        }
-                        i++;
-                    }
-                } else {
-                    // 普通学生
-                    while (m2.find()) {
-                        tempString = m2.group(1);
-                        if (i % 13 == 4) {
-                            kemuString = tempString;
-                            if (kemuString.indexOf('<') == -1)
-                                kechengmingcheng.add(tempString);
-                        } else if (i % 13 == 5) {
-                            chengji.add(Common.zhongjian(tempString, ")\">", "</a>"));
-                            chengjiString = Common.zhongjian(tempString, ")\">",
-                                    "</a>");
-                            urlList.add("http://jwgl.btbu.edu.cn"
-                                    + Common.zhongjian(tempString, "JsMod('", "\""));
-                        } else if (i % 13 == 10) {
-                            xuefen.add(tempString);
-                            showString += "\n" + kemuString + "\t"
-                                    + chengjiString;
-                            gengxin(showString);
-                            SystemClock.sleep(random.nextInt(100));
-                        }
-                        i++;
-                    }
-                }
-            }
-            try {
-                int ye;
-                p = Pattern.compile(getString(R.string.regexChengji_ye));
-                m = p.matcher(result);
-                if(m.find()) {
-                    String yeString = m.group(2);
-                    ye = Integer.valueOf(yeString);
-                    int xh = 2;
-                    while (xh <= ye) {
-                        showString += "\n共" + String.valueOf(ye) + "页,正在获取第"
-                                + String.valueOf(xh) + "页……";
-                        gengxin(showString);
-                        i = 0;
-                        result = POST(
-                                "http://jwgl.btbu.edu.cn/xszqcjglAction.do?method=queryxscj",
-                                "PageNum=" + String.valueOf(xh));
-                        showString += "\n获取成功，正在分析第" + String.valueOf(xh) + "页……";
-                        gengxin(showString);
-                        System.out.println("PageNum=" + String.valueOf(xh));
-                        SystemClock.sleep(random.nextInt(120));
-                        p = Pattern.compile(getString(R.string.regexChengji3));
-                        m = p.matcher(result);
-                        while (m.find()) {
-                            Pattern p2 = Pattern
-                                    .compile(getString(R.string.regexChengji4));
-                            Matcher m2 = p2.matcher(m.group(0));
-                            if (pangtingsheng) {
-                                // 旁听生
-                                while (m2.find()) {
-                                    tempString = m2.group(1);
-                                    if (i % 10 == 2) {
-                                        kemuString = tempString;
-                                        if (kemuString.indexOf('<') == -1)
-                                            kechengmingcheng.add(tempString);
-                                    } else if (i % 10 == 3) {
-                                        chengji.add(Common.zhongjian(tempString, ")\">",
-                                                "</a>"));
-                                        chengjiString = Common.zhongjian(tempString,
-                                                ")\">", "</a>");
-                                        urlList.add("http://jwgl.btbu.edu.cn"
-                                                + Common.zhongjian(tempString, "JsMod('",
-                                                "\""));
-                                    } else if (i % 10 == 8) {
-                                        xuefen.add(tempString);
-                                        showString += "\n" + kemuString + "\t"
-                                                + chengjiString;
-                                        gengxin(showString);
-                                        SystemClock.sleep(random.nextInt(100));
-                                    }
-                                    i++;
-                                }
-                            } else {
-                                // 普通学生
-                                while (m2.find()) {
-                                    tempString = m2.group(1);
-                                    if (i % 13 == 4) {
-                                        kemuString = tempString;
-                                        if (kemuString.indexOf('<') == -1)
-                                            kechengmingcheng.add(tempString);
-                                    } else if (i % 13 == 5) {
-                                        chengji.add(Common.zhongjian(tempString, ")\">",
-                                                "</a>"));
-                                        chengjiString = Common.zhongjian(tempString,
-                                                ")\">", "</a>");
-                                        urlList.add("http://jwgl.btbu.edu.cn"
-                                                + Common.zhongjian(tempString, "JsMod('",
-                                                "\""));
-                                    } else if (i % 13 == 10) {
-                                        xuefen.add(tempString);
-                                        showString += "\n" + kemuString + "\t"
-                                                + chengjiString;
-                                        gengxin(showString);
-                                        SystemClock.sleep(random.nextInt(100));
-                                    }
-                                    i++;
-                                }
-                            }
-                        }
-                        xh++;
-                        SystemClock.sleep(random.nextInt(100));
-                    }
-                }
-            } catch (Exception ignored) {}
-
-            Message message = new Message();
-            message.what = 1;
-            handler.sendMessage(message);
-            System.out.println("finished chengji");
-            if (dialog.isShowing())
-                dialog.dismiss();
+            SharedPreferences sp = getSharedPreferences("data", 0);
+            String zidongvpn = sp.getString("zidongvpn", "");
+            neiwangChengji();
         }
     };
+
     Runnable pingshichengji = new Runnable() {
         @Override
         public void run() {
@@ -245,7 +253,8 @@ public class jiaowu_chengji extends SwipeBackActivity {
                 Message message = new Message();
                 message.what = 2;
                 handler.sendMessage(message);
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
     };
     private ExecutorService executorService = Executors.newCachedThreadPool();
@@ -287,7 +296,8 @@ public class jiaowu_chengji extends SwipeBackActivity {
                     toast.show();
                 }
 
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
     };
 
@@ -298,9 +308,8 @@ public class jiaowu_chengji extends SwipeBackActivity {
 
         uiId = Thread.currentThread().getId();// 获取主线程ID
         dialog = ProgressDialog.show(this, "登录成功", "正在获取成绩……", true, true);
-        MobclickAgent.onEvent(this, "chengji");
         executorService.submit(chengjiRunnable);
-
+        MobclickAgent.onEvent(this, "chengji");
     }
 
     void gengxin(String gx) {
@@ -314,15 +323,16 @@ public class jiaowu_chengji extends SwipeBackActivity {
     }
 
     public String POST(String url, String postdata) {
-        try{
-            Common.commonPOST(url, postdata);
+        String resultString = "";
+        try {
+            resultString = Common.commonPOST(url, postdata);
         } catch (Exception e) {
             if (dialog.isShowing())
                 dialog.dismiss();
             show("连接教务管理系统失败。\n请确认信号良好再操作。");
             finish();
         }
-        return (result);
+        return resultString;
     }
 
     public void show(String str) {
