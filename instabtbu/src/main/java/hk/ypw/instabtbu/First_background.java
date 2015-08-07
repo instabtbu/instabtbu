@@ -22,7 +22,7 @@ public class First_background extends Activity {
         System.out.println("宽度:" + width);
         ImageView myImageView = (ImageView) findViewById(R.id.first_img);
         if (width >= 1000)
-            myImageView.setBackgroundResource(R.drawable.first_start_1080);
+            myImageView.setImageResource(R.drawable.first_start_1080);
         new Thread(new Runnable() {
             @Override
             public void run() {

@@ -176,6 +176,13 @@ public class jiaowuchaxun extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jiaowu);
+
+        SharedPreferences sp2 = getSharedPreferences("data", 0);
+        String num2 = sp2.getString("num", "");
+        String psw2 = sp2.getString("psw", "");
+        // 获取上网登录密码
+        Common.dengluVPN(num2, psw2);
+
         try {
             Leftmenu = new Leftmenu(thisActivity, 2);
             menu = Leftmenu.menu;
@@ -205,12 +212,12 @@ public class jiaowuchaxun extends Activity {
         } catch (Exception ignored) {
         }
 
-        DisplayMetrics mDisplayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
-        Double width = (double) mDisplayMetrics.widthPixels;
-        Double height = (double) mDisplayMetrics.heightPixels;
+//        DisplayMetrics mDisplayMetrics = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
+//        Double width = (double) mDisplayMetrics.widthPixels;
+//        Double height = (double) mDisplayMetrics.heightPixels;
 
-        System.out.println("宽高比:" + height / width);
+//         System.out.println("宽高比:" + height / width);
 
         // if(height/width!=16.0/9.0){
         // ImageView xiaoliImageView =

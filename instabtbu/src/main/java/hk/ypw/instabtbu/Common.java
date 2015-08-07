@@ -553,4 +553,17 @@ public class Common {
         // show(p);
         // SystemClock.sleep(200);
     }
+
+    public static boolean dengluVPN(String num, String psw){
+        boolean success = false;
+        String result = "";
+        try {
+            result = SSLPOST("https://vpn.btbu.edu.cn/dana-na/auth/url_default/login.cgi", "username=" + num + "&password=" + psw);
+
+        }catch (Exception e){
+
+        }
+
+        return  success;
+    }
 }
