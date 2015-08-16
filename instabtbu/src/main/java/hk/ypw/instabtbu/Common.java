@@ -536,7 +536,6 @@ public class Common {
             }
         } catch (Exception ignored) {
         }
-
         return bitmap;
     }
 

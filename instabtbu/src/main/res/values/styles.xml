@@ -6,7 +6,7 @@
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
     -->
-    <style name="myTheme" parent="android:Theme.Light"></style>
+    <style name="myTheme" parent="android:Theme.Light"/>
 
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
