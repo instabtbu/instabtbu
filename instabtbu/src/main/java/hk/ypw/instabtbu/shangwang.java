@@ -45,6 +45,7 @@ public class shangwang extends Activity {
      * @author ypw
      * @time 2014-09-17
      */
+
     long uiId = 0;
     Leftmenu Leftmenu;
     SlidingMenu menu;

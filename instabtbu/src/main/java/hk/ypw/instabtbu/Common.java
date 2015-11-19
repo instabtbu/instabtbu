@@ -518,7 +518,7 @@ public class Common {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return (result);
+        return result;
     }
 
     public static Bitmap GET(String url) {
